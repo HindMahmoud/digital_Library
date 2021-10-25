@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="digitalLibModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="faculty">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="faculty_name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="students">
+          <Key>
+            <PropertyRef Name="id_student" />
+          </Key>
+          <Property Name="id_student" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_student" Type="nvarchar" MaxLength="300" />
+          <Property Name="national_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="password_student" Type="nvarchar(max)" />
+          <Property Name="faculty_id" Type="int" />
+          <Property Name="phone" Type="nvarchar" MaxLength="25" />
+          <Property Name="Job" Type="nvarchar(max)" />
+          <Property Name="Job_place" Type="nvarchar(max)" />
+          <Property Name="email_address" Type="nvarchar" MaxLength="300" />
+          <Property Name="department" Type="nvarchar(max)" />
+          <Property Name="Division" Type="nvarchar" MaxLength="200" />
+          <Property Name="Specialization" Type="nvarchar" MaxLength="100" />
+          <Property Name="academic_year" Type="nvarchar" MaxLength="10" />
+          <Property Name="chart_title" Type="nvarchar(max)" />
+          <Property Name="Supervisor" Type="nvarchar" MaxLength="500" />
+          <Property Name="Co-supervisor" Type="nvarchar(max)" />
+          <Property Name="notes" Type="nvarchar(max)" />
+          <Property Name="Flag_pay" Type="bit" />
+          <Property Name="date_pay" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_print" Type="nvarchar" MaxLength="50" />
+          <Property Name="iduniversity" Type="int" />
+          <Property Name="univ_name" Type="nvarchar(max)" />
+          <Property Name="degree_academic" Type="nvarchar" MaxLength="200" />
+          <Property Name="search_date" Type="nvarchar" MaxLength="50" />
+          <Property Name="employee_user" Type="nvarchar" MaxLength="70" />
+          <Property Name="refnumber" Type="nvarchar(max)" />
+          <Property Name="arabic_address" Type="nvarchar(max)" />
+          <Property Name="eng_add" Type="nvarchar(max)" />
+          <Property Name="status" Type="tinyint" />
+          <Property Name="student_file" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="university">
+          <Key>
+            <PropertyRef Name="id_uni" />
+          </Key>
+          <Property Name="id_uni" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_univ" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id_admin" />
+          </Key>
+          <Property Name="id_admin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="70" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="digitalLibModelStoreContainer">
+          <EntitySet Name="faculty" EntityType="Self.faculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="students" EntityType="Self.students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="university" EntityType="Self.university" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="digitalLibModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="faculty">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="faculty_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="id_student" />
+          </Key>
+          <Property Name="id_student" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_student" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="national_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password_student" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="faculty_id" Type="Int32" />
+          <Property Name="phone" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Job" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Job_place" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email_address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Division" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Specialization" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="academic_year" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="chart_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Supervisor" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Co_supervisor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Flag_pay" Type="Boolean" />
+          <Property Name="date_pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_print" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="iduniversity" Type="Int32" />
+          <Property Name="degree_academic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="search_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="employee_user" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="refnumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="arabic_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="eng_add" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="univ_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Byte" />
+          <Property Name="student_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="university">
+          <Key>
+            <PropertyRef Name="id_uni" />
+          </Key>
+          <Property Name="id_uni" Type="Int32" Nullable="false" />
+          <Property Name="name_univ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id_admin" />
+          </Key>
+          <Property Name="id_admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="digitalLibEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="faculties" EntityType="Self.faculty" />
+          <EntitySet Name="students" EntityType="Self.student" />
+          <EntitySet Name="universities" EntityType="Self.university" />
+          <EntitySet Name="users" EntityType="Self.user" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="digitalLibModelStoreContainer" CdmEntityContainer="digitalLibEntities">
+          <EntitySetMapping Name="faculties">
+            <EntityTypeMapping TypeName="digitalLibModel.faculty">
+              <MappingFragment StoreEntitySet="faculty">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="faculty_name" ColumnName="faculty_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="digitalLibModel.student">
+              <MappingFragment StoreEntitySet="students">
+                <ScalarProperty Name="student_file" ColumnName="student_file" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="univ_name" ColumnName="univ_name" />
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+                <ScalarProperty Name="name_student" ColumnName="name_student" />
+                <ScalarProperty Name="national_id" ColumnName="national_id" />
+                <ScalarProperty Name="password_student" ColumnName="password_student" />
+                <ScalarProperty Name="faculty_id" ColumnName="faculty_id" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="Job_place" ColumnName="Job_place" />
+                <ScalarProperty Name="email_address" ColumnName="email_address" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+                <ScalarProperty Name="academic_year" ColumnName="academic_year" />
+                <ScalarProperty Name="chart_title" ColumnName="chart_title" />
+                <ScalarProperty Name="Supervisor" ColumnName="Supervisor" />
+                <ScalarProperty Name="Co_supervisor" ColumnName="Co-supervisor" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="Flag_pay" ColumnName="Flag_pay" />
+                <ScalarProperty Name="date_pay" ColumnName="date_pay" />
+                <ScalarProperty Name="date_print" ColumnName="date_print" />
+                <ScalarProperty Name="iduniversity" ColumnName="iduniversity" />
+                <ScalarProperty Name="degree_academic" ColumnName="degree_academic" />
+                <ScalarProperty Name="search_date" ColumnName="search_date" />
+                <ScalarProperty Name="employee_user" ColumnName="employee_user" />
+                <ScalarProperty Name="refnumber" ColumnName="refnumber" />
+                <ScalarProperty Name="arabic_address" ColumnName="arabic_address" />
+                <ScalarProperty Name="eng_add" ColumnName="eng_add" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="universities">
+            <EntityTypeMapping TypeName="digitalLibModel.university">
+              <MappingFragment StoreEntitySet="university">
+                <ScalarProperty Name="id_uni" ColumnName="id_uni" />
+                <ScalarProperty Name="name_univ" ColumnName="name_univ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="digitalLibModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

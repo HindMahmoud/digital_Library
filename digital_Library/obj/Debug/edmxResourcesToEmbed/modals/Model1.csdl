@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="digitalLibModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="faculty">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="faculty_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="id_student" />
+    </Key>
+    <Property Name="id_student" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_student" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="national_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password_student" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="faculty_id" Type="Int32" />
+    <Property Name="phone" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Job" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Job_place" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="email_address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Division" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Specialization" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="academic_year" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="chart_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Supervisor" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Co_supervisor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Flag_pay" Type="Boolean" />
+    <Property Name="date_pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="date_print" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="iduniversity" Type="Int32" />
+    <Property Name="degree_academic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="search_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="employee_user" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="refnumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="arabic_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="eng_add" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="univ_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Byte" />
+    <Property Name="student_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="university">
+    <Key>
+      <PropertyRef Name="id_uni" />
+    </Key>
+    <Property Name="id_uni" Type="Int32" Nullable="false" />
+    <Property Name="name_univ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id_admin" />
+    </Key>
+    <Property Name="id_admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="digitalLibEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="faculties" EntityType="Self.faculty" />
+    <EntitySet Name="students" EntityType="Self.student" />
+    <EntitySet Name="universities" EntityType="Self.university" />
+    <EntitySet Name="users" EntityType="Self.user" />
+  </EntityContainer>
+</Schema>
