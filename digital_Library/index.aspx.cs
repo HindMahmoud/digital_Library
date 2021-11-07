@@ -36,7 +36,7 @@ namespace digital_Library
 
             //Random tr = new Random();
             //int r = tr.Next(1, 100);
-            var t = d.students.Where(a => a.id_student == 1).FirstOrDefault();
+            var t = d.students.Where(a => a.id_student == id).FirstOrDefault();
             refunumber = t.id_student + t.national_id;
             var refnum = stu.refnumber;
             if (refnum == null)
@@ -46,7 +46,7 @@ namespace digital_Library
             }
             //else Response.Redirect("index.aspx");
 
-            id = 1;
+           
             alertmsg();
             if (!IsPostBack)
             {
@@ -133,7 +133,7 @@ namespace digital_Library
             }
             else if (stu.status == 1)//تم الدفع وملأ البيانات
             {
-                Info.Text = "تم ارسال البيانات للموظف وجاري مراجعة البيانات انتظر النتيجة علي الموقع ف خلال اسبوع";
+                Info.Text = "تم ارسال البيانات للموظف وجاري مراجعة البيانات انتظر النتيجة علي الموقع في خلال اسبوع";
                 submit.Enabled = false;
                 submit.CssClass = "notactive";
                 Button1.CssClass = "notactive";

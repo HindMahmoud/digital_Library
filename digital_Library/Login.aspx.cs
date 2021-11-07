@@ -13,8 +13,8 @@ namespace digital_Library
         digitalLibEntities db = new digitalLibEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["id"] = 1;
-            Response.Redirect("index.aspx");
+            Session["id"] = null;
+            //Response.Redirect("index.aspx");
             //msg.Visible = false;
 
         }
