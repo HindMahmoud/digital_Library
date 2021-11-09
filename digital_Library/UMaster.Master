@@ -1,0 +1,82 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UMaster.master.cs" Inherits="digital_Library.UMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>المكتبه الرقمية</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-rtl.css" />
+    <link href="vendor/vendorindex/font-awesome-4.7/css/font-awesome.css" rel="stylesheet" />
+    <link href="css/UMasterCss.css" rel="stylesheet" />
+    <style>
+        .navbar-nav>li>a {
+    color:white;
+    font-size:16px !important;
+    padding-top:27px !important;
+}
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+         <nav class="navbar navbar-static-top navbar-fixed-top" >
+        <div class="navbar-main">             
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>                                   
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <img src="images/logo2.png" style="float: left;width: 90px;height: 70px;margin:3px 0"/>
+                    
+                    <ul class="nav navbar-nav nv">
+                    <li> <img src="images/i.png" style="width: 90px;height: 70px;margin:3px 0"/></li>
+                    <li><a class="inactive" href="dashboard.aspx"> الرئيسية</a></li>
+                        <li><a class="inactive" href="AcceptedStu.aspx"> المقبولين</a></li>
+                        <li><a class="inactive" href="RejectedStu.aspx"> المرفوضين</a></li>
+                    <li><a class="inactive" href="ULogin.aspx"> تسجيل خروج</a></li>
+                    </ul>
+                </div>
+            </div>         
+        </div> 
+    </nav> 
+        <br />
+        <div class="container-main">
+        <h1 class="text-center header">ادارة المكتبة الرقمية بجامعة سوهاج </h1>
+            <div class="container py-5">
+                <div class="row py-5">
+                    <div class="col-lg-12 mx-auto bg-white">
+                        <div class="card shadow border-0">
+                            <div class="card-body">
+                                <div class="table-responsive">
+         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+                                 </div>
+                             </div>
+                         </div>
+                      </div>
+                 </div>
+               </div>
+            </div>
+        <section class="footer">
+           <p class="text-center wow fadeIn">جميع الحقوق محفوظة لجامعة سوهاج- مركز الخدمات الالكترونية - تنفيذ وبرمجة فريق وحدة البرمجيات</p>       
+        </section>
+
+    </div>
+    </form>
+
+</body>
+</html>

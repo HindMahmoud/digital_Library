@@ -104,12 +104,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AcceptedStu.aspx" />
     <Content Include="css\indexstyle.css" />
     <Content Include="css\printStyle.css" />
     <Content Include="css\style1.css" />
+    <Content Include="css\UMasterCss.css" />
     <Content Include="dashboard.aspx" />
     <Content Include="images\errorprint.PNG" />
     <Content Include="images\i.png" />
+    <Content Include="images\logo2.png" />
     <Content Include="images\s.png" />
     <Content Include="js\canvas2image.js" />
     <Content Include="js\indexjsFile.js" />
@@ -130,6 +133,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="print.aspx" />
+    <Content Include="RejectedStu.aspx" />
     <Content Include="vendor\vendorindex\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
     <Content Include="vendor\vendorindex\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
     <Content Include="vendor\vendorindex\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
@@ -146,6 +150,7 @@
     <Content Include="modals\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="UMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -158,7 +163,6 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\mainIndex.css" />
     <Content Include="css\style.css" />
-    <Content Include="images\55.png" />
     <Content Include="images\bg-head-01.jpg" />
     <Content Include="images\bg-head-02.jpg" />
     <Content Include="images\icons\1.jpg" />
@@ -192,6 +196,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcceptedStu.aspx.cs">
+      <DependentUpon>AcceptedStu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AcceptedStu.aspx.designer.cs">
+      <DependentUpon>AcceptedStu.aspx</DependentUpon>
+    </Compile>
     <Compile Include="dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -255,12 +266,26 @@
       <DependentUpon>print.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RejectedStu.aspx.cs">
+      <DependentUpon>RejectedStu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RejectedStu.aspx.designer.cs">
+      <DependentUpon>RejectedStu.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ULogin.aspx.cs">
       <DependentUpon>ULogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ULogin.aspx.designer.cs">
       <DependentUpon>ULogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UMaster.Master.cs">
+      <DependentUpon>UMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UMaster.Master.designer.cs">
+      <DependentUpon>UMaster.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
