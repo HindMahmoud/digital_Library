@@ -1,11 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UMaster.Master" AutoEventWireup="true" CodeBehind="AcceptedStu.aspx.cs" Inherits="digital_Library.AcceptedStu" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
                                <div class="table-responsive">
-                                  
-                                     <table id="example"  class="table table-striped table-bordered">
+                                  <table id="example"  class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                <th>الاسم</th>
@@ -25,8 +25,7 @@
                                                 <th>المشرف</th>
                                                 <th>عنوان المخطط</th>
                                                 <th>المشاركين/المشرفين</th>
-                                                <th>حالة الدفع</th>
-                                                <th>الاطلاع علي الملف</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -53,9 +52,7 @@
                                                 <td><%=i.Supervisor %></td>
                                                 <td><%=i.chart_title %></td>
                                                 <td><%=i.Co_supervisor %></td>
-                                                <td><%=i.Flag_pay %></td>
-                                                <td><a  target="_blank" href="~/sfiles/<%=i.student_file %>"></a></td>
-                                              
+                                                
                                             </tr>
                                             <% }
                                             } %>
@@ -66,13 +63,33 @@
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
      <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-     <script>
-
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js" > </script>
+    <script>
+      
         $(function () {
             $(document).ready(function () {
-              var Otables=  $('#example').DataTable();
-               
-              var allPages = Otables.cells().nodes();
+                var Otables = $('#example').DataTable(
+                    {
+                        dom: 'Bfrtip',
+                        buttons: [
+                            {
+                                extend: 'print',
+                                customize: function (win) {
+                                    $(win.document.body)
+                                        .css('font-size', '10pt')
+                                        .prepend(
+                                            '<img src="images/i.png" style="position:absolute; top:0; left:0;" />'
+                                        );
+
+                                    $(win.document.body).find('table')
+                                        .addClass('compact')
+                                        .css('font-size', 'inherit');
+                                }
+                            }
+                        ]
+                });
+                $('.buttons-print>span').text('طباعة');
               
             });
         });

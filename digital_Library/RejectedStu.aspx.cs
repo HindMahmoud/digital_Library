@@ -16,5 +16,10 @@ namespace digital_Library
         {
             rejectStutends = (from m in dn.students where m.status == 3&&m.student_file!=null select m).ToList();
         }
+
+        protected void btn_ServerClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

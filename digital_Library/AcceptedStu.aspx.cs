@@ -15,6 +15,6 @@ namespace digital_Library
         protected void Page_Load(object sender, EventArgs e)
         {
             acceptStutends = (from m in dn.students where m.status== 4&&m.student_file != null select m).ToList();
-        }
+        } 
     }
 }

@@ -42,11 +42,10 @@
                     <img src="images/logo2.png" style="float: left;width: 90px;height: 70px;margin:3px 0"/>
                     
                     <ul class="nav navbar-nav nv">
-                    <li> <img src="images/i.png" style="width: 90px;height: 70px;margin:3px 0"/></li>
-                    <li><a class="inactive" href="dashboard.aspx"> الرئيسية</a></li>
+                        <li> <img src="images/i.png" style="width: 90px;height: 70px;margin:3px 0"/></li>
+                        <li><a class="inactive" href="dashboard.aspx"> الرئيسية</a></li>
                         <li><a class="inactive" href="AcceptedStu.aspx"> المقبولين</a></li>
-                        <li><a class="inactive" href="RejectedStu.aspx"> المرفوضين</a></li>
-                    <li><a class="inactive" href="ULogin.aspx"> تسجيل خروج</a></li>
+                        <li><a class="inactive" href="ULogin.aspx"> تسجيل خروج</a></li>
                     </ul>
                 </div>
             </div>         

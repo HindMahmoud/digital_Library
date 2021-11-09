@@ -13,7 +13,16 @@ li:hover {background-color:#27258f !important
 }
 li a:hover {background-color:#27258f !important
 }
- 
+   .s2 {
+      float:left
+  ;  margin:10px 22px;
+    font-size: 18px;
+    border-radius: 0%;
+    width: 150px;
+    padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	background: #3d3c90;
+    border: 1px solid #3d3c90; }
         body {
             background-color: #f1eff0;
         }
@@ -32,4 +41,5 @@ li a:hover {background-color:#27258f !important
         padding:10px 40px;text-align:center}
         .dataTables_filter>label{content:"بحث" !important
         }
+
  

@@ -1,10 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UMaster.Master" AutoEventWireup="true" CodeBehind="RejectedStu.aspx.cs" Inherits="digital_Library.RejectedStu" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-                         <div class="table-responsive">
-                                  
-                                     <table id="example"  class="table table-striped table-bordered">
+                                            
+                            <div class="table-responsive">
+                                <button type="button" id="btn" class="s2 btn btn-primary"  runat="server" onserverclick="btn_ServerClick"  style="margin-left:20px">تنزيل كملف اكسيل</button>
+                          
+                                 <table id="example"  class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                <th>الاسم</th>
