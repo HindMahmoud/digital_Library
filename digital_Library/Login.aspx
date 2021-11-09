@@ -35,9 +35,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 form log" style="padding-bottom:10px !important;margin-top:7px;">
-                     <%-- <label>خطوات التقديم الالكترونى</label>	--%>
-                    <%--<iframe width="100%" src="https://www.youtube.com/embed/o5Ha2XsOXC8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                   --%>
+                   
                      <br />
                         <asp:Label runat="server" style="font-size:15px;border-radius:0;display:none"  Width="100%" CssClass="alert alert-danger" ID="msg"></asp:Label> 
                                 <asp:RegularExpressionValidator CssClass="alert alert-danger" display="Dynamic" Style="border-radius:0;" ID="RegularExpressionValidator5"

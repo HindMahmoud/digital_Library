@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="icon" href="images/55.png" />
     <title>تسجيل الدخول</title>
+    <style>
+        #errorlbl {
+        color:red;
+        }
+    </style>
 </head>
 <body >
      <form id="form1" runat="server">
@@ -24,6 +29,7 @@
             <div class="row">
                 <div class="col-md-12 form log">
                     <h3>تسجيل الدخول</h3>
+                         <asp:Label ID="errorlbl" runat="server" Visible="false"></asp:Label>
                         <input class="form-control" type="text" id="fname" placeholder="الاسم" runat="server" required="required"/>
                         <input class="form-control" type="password" id="pass" placeholder="الرقم السري" required="required" runat="server"/>
                     <asp:Button runat="server" ID="confirm"  OnClick="confirm_Click" Text="تسجيل الدخول"/>
