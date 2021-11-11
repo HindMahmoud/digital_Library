@@ -1,5 +1,5 @@
 ﻿ .navbar {
-        background-color:#27258f;
+        background-color:#743d3d;
         }
        .container-main {
           padding-top:70px;
@@ -9,9 +9,9 @@
     font-size:16px !important;
     padding-top:27px !important;
 }
-li:hover {background-color:#27258f !important
+li:hover {background-color:#743d3d !important
 }
-li a:hover {background-color:#27258f !important
+li a:hover {background-color:#743d3d !important
 }
    .s2 {
       float:left

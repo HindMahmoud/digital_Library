@@ -1,4 +1,5 @@
-﻿using System;
+﻿using digital_Library.modals;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,11 @@ namespace digital_Library
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            digitalLibEntities db = new digitalLibEntities();
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("ULogin.aspx");
+            }
 
         }
     }

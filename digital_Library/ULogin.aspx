@@ -29,6 +29,7 @@
             <div class="row">
                 <div class="col-md-12 form log">
                     <h3>تسجيل الدخول</h3>
+                    <br />
                          <asp:Label ID="errorlbl" runat="server" Visible="false"></asp:Label>
                         <input class="form-control" type="text" id="fname" placeholder="الاسم" runat="server" required="required"/>
                         <input class="form-control" type="password" id="pass" placeholder="الرقم السري" required="required" runat="server"/>

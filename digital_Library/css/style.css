@@ -250,7 +250,7 @@ body {
     display: inline-block;
 }
 .loginn .form{
-    border-top: 10px solid #27258f;
+    border-top: 10px solid #743d3d;
     color: #404040;
     background-color: #fff;
 }
@@ -267,15 +267,15 @@ body {
 }
 .loginn input[type=submit],
 .data input[type=submit]{
-    border: 1px solid #27258f;
+    border: 1px solid #743d3d;
     color: #fff !important;
-    background: #27258f;
+    background: #743d3d;
 }
 .loginn input[type=submit]:active,
 .loginn input[type=submit]:focus,
 .loginn input[type=submit]:hover{
-    border: 1px solid #27258f;
-    background: #27258f;
+    border: 1px solid #743d3d;
+    background: #743d3d;
 }
 @media(max-width:767px){
     .loginn{
@@ -322,8 +322,8 @@ body {
     padding:25px;
 }
 .login input{
-    background-color: #27258f;
-    border: 1px solid #27258f;
+    background-color: #9a7652;
+    border: 1px solid #9a7652;
     padding:10px 30px;
     margin-top: 15px;
     font-size: 16px;
@@ -385,5 +385,8 @@ body {
     color: #fff;
     cursor: pointer;
   }
-/* end modal */ 
-
+/* end modal */
+#Label1 a {
+color:aqua !important}
+#Label1 a:hover {
+color:aqua !important}
