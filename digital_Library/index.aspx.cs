@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -421,7 +422,49 @@ namespace digital_Library
 
                 }
             }
-
-        
+        //public void dbb()
+        //{
+        //    PostJson("https://atfawry.fawrystaging.com/ECommerceWeb/Fawry/payments/status", new fawrypay_request
+        //    {
+        //        merchantCode = "1tSa6uxz2nRlhbmxHHde5A==",
+        //        merchantRefNum = "99900642041",
+        //        customerName = "Ahmed Ali",
+        //        customerMobile = "01234567891",
+        //        customerEmail = "example@gmail.com",
+        //        customerProfileId = "777777",
+        //        amount = 580.55,
+        //        paymentExpiry : 1631138400000,
+        //        currencyCode = "EGP",
+        //        language = "en-gb",
+        //        chargeItems =  {
+        //                           itemId =  "897fa8e81be26df25db592e81c31c",
+        //                           description =  "Item Description",
+        //                           price =  580.55,
+        //                           quantity =  1
+        //                         },
+        //        signature = "3f527d0209f4fa5e370caf46f66597c6a7c04580c827ca1f29927ec0d9215131",
+        //        payment_method = "PAYATFAWRY",
+        //        description = "example description"
+        //    });
+        //}
+        //private static void PostJson(string uri, fawrypay_request postParameters)
+        //{
+        //    string postData = JsonConvert.SerializeObject(postParameters);
+        //    byte[] bytes = System.Text.Encoding.UTF8.GetBytes(postData);
+        //    var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+        //    httpWebRequest.Method = "GET";
+        //    httpWebRequest.ContentLength = bytes.Length;
+        //    httpWebRequest.ContentType = "text/json";
+        //    using (Stream requestStream = httpWebRequest.GetRequestStream())
+        //    {
+        //        requestStream.Write(bytes, 0, bytes.Count());
+        //    }
+        //    var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+        //    if (httpWebResponse.StatusCode != HttpStatusCode.OK)
+        //    {
+        //        string message = String.Format("GET failed. Received HTTP {0}", httpWebResponse.StatusCode);
+        //        throw new ApplicationException(message);
+        //    }
+        //}
     }
 }

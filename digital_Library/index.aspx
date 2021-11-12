@@ -62,7 +62,7 @@
                             <asp:Label runat="server" class="infolabel" ID="Info">الخطوة 1 يرجي دفع مصروفات الافادة</asp:Label>
                              <br /> 
                               <div id="fawerydiv" runat="server" style="margin-top:15px">
-                                 <input type="button"  class="btn btn-primary" onclick="FawryPay.checkout(chargeRequest, 'http://ecpu.sohag-univ.edu.eg/govSystem/print.aspx', 'http://ecpu.sohag-univ.edu.eg/govSystem/print.aspx')"   alt="Edfa3 Fawry" id="xsrrs" style=" height:47px; width:103px; background:url(https://www.atfawry.com/ECommercePlugin/resources/images/atfawry-ar-logo.png);"/>
+                                 <input type="button"  class="btn btn-primary" onclick="FawryPay.checkout(FawryPayAtFawry(), 'http://ecpu.sohag-univ.edu.eg/digitalLib/index.aspx', 'http://ecpu.sohag-univ.edu.eg/digitalLib/index.aspx')"   alt="Edfa3 Fawry" id="xsrrs" style=" height:47px; width:103px; background:url(https://www.atfawry.com/ECommercePlugin/resources/images/atfawry-ar-logo.png);"/>
                               </div>
                          </div>
                     
@@ -152,10 +152,8 @@
                                     
                                      <input list="brow1" class="input--style-1" id="university_name" placeholder="اسم الجامعة *" runat="server"/>
                                   <datalist id="brow1"  runat="server" >
-                                 
                                 </datalist>
                                     <span class="another-univ"></span>
-                                   
                                 </div>
                            
                      
@@ -166,7 +164,6 @@
                                 <div class=" input-group">
                                   <input list="brow" class=" input--style-1" id="browinput" autocomplete="off" placeholder="الكلية *" runat="server" required="required" oninvalid="this.setCustomValidity('الكلية مطلوبه')" oninput="setCustomValidity('')"/>
                                   <datalist id="brow"  runat="server">
-                                 
                                 </datalist>    
 	                              
                             </div>
@@ -265,14 +262,11 @@
                 </div>
             </div>
         </div>
-   
-
- 
-   
     </form>
       <!-- Jquery JS-->
     <script src="vendor/vendorindex/jquery/jquery.min.js"></script>
     <script src= "https://atfawry.fawrystaging.com/ECommercePlugin/scripts/V2/FawryPay.js"></script>
+    <script src="js/sha.js"></script>
     <!-- Main JS-->
     <script src="js/global.js"></script>
   <script src="js/indexjsFile.js"></script>
@@ -392,7 +386,57 @@
 		
       
     </script>
+    <!--script for api fawry-->
+    <script>
+        function FawryPayAtFawry() {
+        
+            let merchantCode    = "1tSa6uxz2nSuj+kDUGVlyw";
+let merchantRefNum  = 'ee2001';
+let merchant_cust_prof_id  = 1024;
+let payment_method = "PAYATFAWRY";
+let amount = "30";
+let customerName='hend';
+let mobile ='200000002022';
+let merchant_sec_key =  "259af31fc2f74453b3a55739b21ae9ef";
+let signature_body = merchantCode.concat(merchantCode , merchantRefNum , merchant_cust_prof_id , payment_method , amount , merchant_sec_key);
+let sha256 = new jsSHA('SHA-256', 'TEXT');
+sha256.update(signature_body);
+let hash_signature = sha256.getHash("HEX");
+axios.post('https://atfawry.fawrystaging.com/ECommerceWeb/Fawry/payments/charge', {
+                'merchantCode' : merchantCode,
+                'merchantRefNum' : merchantRefNum,
+                'customerName' : customerName,
+                'customerMobile' : mobile,
+                'customerEmail' : 'example@gmail.com',
+                'customerProfileId' : '1024',
+                'amount' : '30',
+                'paymentExpiry' : '1631138400000',
+                'currencyCode' : 'EGP',
+                'language' : 'en-gb',
+                'chargeItems' : {
+                                      'itemId' : '897fa8e81be26df25db592e81c31c',
+                                      'description' : 'Item Description',
+                                      'price' : '580.55',
+                                      'quantity' : '1'
+                                  },
+                'signature' : hash_signature,
+                'payment_method' : payment_method,
+                'description': 'example description'
+            })
+                .then(response => {
+                    // Get Response Contents
+                    let type          = response.data.type;
+                    let paymentStatus = response.data.paymentStatus;
+                    //
+                })
+                .catch(error => {
+                    console.log(error.response.data)
+                })
+}
 
+    </script>
+
+    <!--end the script-->
 
 </body>
 </html>

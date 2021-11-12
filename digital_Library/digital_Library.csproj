@@ -118,6 +118,7 @@
     <Content Include="js\indexjsFile.js" />
     <Content Include="js\j1.js" />
     <Content Include="js\JavaScript.js" />
+    <Content Include="js\sha.js" />
     <Content Include="modals\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -203,6 +204,7 @@
     <Compile Include="AcceptedStu.aspx.designer.cs">
       <DependentUpon>AcceptedStu.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ChargeItems.cs" />
     <Compile Include="dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -210,6 +212,7 @@
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="fawrypay_request.cs" />
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

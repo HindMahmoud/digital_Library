@@ -54,7 +54,7 @@
                     
                     <br />
                     <asp:Button runat="server" ID="confirm"  OnClick="confirm_Click"  Text="تسجيل الدخول"/> <br />
-                    <asp:Label ID="forget" runat="server" Visible="false">في حالة نسيان الرقم السري  واتساب فقط بالدعم الفني 01152246640  من 9 ص ل 5 م</asp:Label>
+                    <asp:Label ID="forget" runat="server" Visible="false">في حالة نسيان الرقم السري  واتساب فقط بالدعم الفني 01140517266  من 9 ص ل 5 م</asp:Label>
 					<br />
                   </div>
             </div>
