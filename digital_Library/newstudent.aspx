@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-rtl.css"/>
-    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+   <%-- <link rel="stylesheet" href="css/font-awesome.min.css"/>--%>
     <link rel="stylesheet" href="css/style.css"/>
     <style>
         .alert{
@@ -22,15 +22,15 @@
             margin-top:5px
         }
          h1 {
-        text-align:center;color:white}
+        text-align:center;color:#512a0b}
             h1 a {
-            text-decoration:none;color:white}
+            text-decoration:none;color:#512a0b}
                 h1 a:hover {
-               color:white }
+               color:#512a0b }
             h1 a:active {
-             text-decoration:none;color:white}
+             text-decoration:none;color:#512a0b}
                 h1 a:focus {
-                 text-decoration:none;color:white}
+                 text-decoration:none;color:#512a0b}
     </style>
    
 </head>
@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="col-md-12 form log" style="margin-top: 0 !important;">
                      
-                     <asp:Label runat="server" style="font-size:14px; color:red;display:none" CssClass="alert alert-danger"  Width="100%" ID="msg"></asp:Label> 
+                     <asp:Label runat="server" style="font-size:14px; color:red;" Visible="false" CssClass="alert alert-danger"  Width="100%" ID="msg"></asp:Label> 
                    
                      <asp:RegularExpressionValidator CssClass="text-red alert alert-danger" ID="RegularExpressionValidator5"
                                   ControlToValidate="nationalId"  runat="server" Display="Dynamic"
@@ -53,7 +53,15 @@
                                   ValidationExpression="^\d{14}$" ForeColor="red">
                                </asp:RegularExpressionValidator>
                          <input  title="الرقم القومى"  class="form-control" type="text"  id="nationalId" runat="server" placeholder="الرقم القومي" required="required" oninvalid="this.setCustomValidity('هذا البيان مطلوب')" oninput="setCustomValidity('')" onkeypress="filterDigit(event)"/>
-                         <input class="form-control"  type="password"  id="pass" placeholder="الرقم السري" required="required" runat="server" oninvalid="this.setCustomValidity('هذا البيان مطلوب')" oninput="setCustomValidity('')"/>
+                     <input  title="اسم الطالب"  class="form-control" type="text"  id="nametxt" runat="server" placeholder="اسم الطالب" required="required" oninvalid="this.setCustomValidity('هذا البيان مطلوب')" oninput="setCustomValidity('')" />
+                    <asp:RegularExpressionValidator CssClass="text-red alert alert-danger" ID="RegularExpressionValidator1"
+                                  ControlToValidate="phonetxt"  runat="server" Display="Dynamic"
+                                  ErrorMessage="ادخل 11 رقم للتليفون يبدأ ب 01"  Width="100%"
+                                  ValidationExpression="^[0][1]\d{9}$" ForeColor="red">
+                               </asp:RegularExpressionValidator>  
+                    <input  title="رقم التليفون"  class="form-control" type="text"  id="phonetxt" runat="server" placeholder="رقم التليفون" required="required" oninvalid="this.setCustomValidity('هذا البيان مطلوب')" oninput="setCustomValidity('')" onkeypress="filterDigit(event)"/>
+                               
+                     <input class="form-control"  type="password"  id="pass" placeholder="الرقم السري" required="required" runat="server" oninvalid="this.setCustomValidity('هذا البيان مطلوب')" oninput="setCustomValidity('')"/>
 						 <input class="form-control" onkeyup="Validate()" type="password"  id="Password1" placeholder="تأكيد الرقم السري"  runat="server" required="required" oninvalid="this.setCustomValidity('هذا البيان مطلوب')" oninput="setCustomValidity('')"/>
                      <span id="message" style="font-size:17px;"></span>
                     <br />
@@ -72,10 +80,10 @@
         </div>
          
     </div>
-
+          <script src="js/jquery-1.11.1.min.js"></script>
              <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/script.js"></script>
+  
+   <%-- <script src="js/script.js"></script>--%>
          <script>
              function checkPhoneKey(key) {
                  return (key >= '0' && key <= '9') || key == '+' || key == '(' || key == ')' || key == '-';

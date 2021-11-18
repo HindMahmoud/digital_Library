@@ -129,7 +129,7 @@
                 });
                 $("#accept").on("click", function () {
                     if (arr.length > 0) {
-                        console.log(arr);
+                       // console.log(arr);
                         $.ajax({
                                     type: 'POST',
                                     url: 'dashboard.aspx/finalAcceptStuFun',

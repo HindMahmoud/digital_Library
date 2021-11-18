@@ -13,7 +13,7 @@ namespace digital_Library
         digitalLibEntities db = new digitalLibEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
-            msg.Visible = false;
+            Session["id"] = null;
         }
 
         protected void Newconfirm_Click(object sender, EventArgs e)
@@ -24,18 +24,23 @@ namespace digital_Library
                 msg.Text = "هذالرقم القومي موجود بالفعل";
                 msg.Visible = true; RegularExpressionValidator5.Visible = false;
 
-                return;
             }
-            string newnational = toEnglishNumber(nationalId.Value);
-            student s = new student
+            else
             {
-                national_id = newnational,
-                password_student = pass.Value
-            };
-            db.students.Add(s);
-            db.SaveChanges();
-            Session["id"] = s.id_student;
-            Response.Redirect("index.aspx");
+                string newnational = toEnglishNumber(nationalId.Value);
+                student s = new student
+                {
+                    national_id = newnational,
+                    password_student = pass.Value,
+                    phone=phonetxt.Value,
+                    name_student=nametxt.Value
+
+                };
+                db.students.Add(s);
+                db.SaveChanges();
+                Session["id"] = s.id_student;
+                Response.Redirect("index.aspx");
+            }
 
         }
         public string toEnglishNumber(string input)

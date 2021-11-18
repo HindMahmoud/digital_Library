@@ -48,7 +48,8 @@
                 <div class="card-body">
                     <h2 class="title">وحدة المكتبة الرقميه</h2>
 					   <h4 class="title">إستمارة فحص موضوعات المخططات</h4>
-                           <div class="containerstep" dir="rtl">
+                    	<asp:button runat="server" ID="btn" OnClick="btn_Click" cssClass="glyphicon glyphicon-off btn logoutBtn" Text="تسجيل الخروج"/>       
+                    <div class="containerstep" dir="rtl">
                                <ul class="progressbar">
                                   <li  id="li1"><a href="#fawerydiv">دفع مصاريف الافادة </a></li>
                                   <li id="li2"><a href="#formdiv"> ملأ بياناتك </a></li>
@@ -62,7 +63,7 @@
                             <asp:Label runat="server" class="infolabel" ID="Info">الخطوة 1 يرجي دفع مصروفات الافادة</asp:Label>
                              <br /> 
                               <div id="fawerydiv" runat="server" style="margin-top:15px">
-                                 <input type="button"  class="btn btn-primary" onclick="FawryPay.checkout(FawryPayAtFawry(), 'http://ecpu.sohag-univ.edu.eg/digitalLib/index.aspx', 'http://ecpu.sohag-univ.edu.eg/digitalLib/index.aspx')"   alt="Edfa3 Fawry" id="xsrrs" style=" height:47px; width:103px; background:url(https://www.atfawry.com/ECommercePlugin/resources/images/atfawry-ar-logo.png);"/>
+                                 <input type="button"  class="btn btn-primary" onclick="FawryPay.checkout(chargeRequest, , 'http://ecpu.sohag-univ.edu.eg/digitalLib/index.aspx')"   alt="Edfa3 Fawry" id="xsrrs" style=" height:47px; width:103px; background:url(https://www.atfawry.com/ECommercePlugin/resources/images/atfawry-ar-logo.png);"/>
                               </div>
                          </div>
                     
@@ -158,9 +159,8 @@
                            
                      
                          </div>
-                      <div class="row row-space">
+                      <div class="row row-space ss">
                             <div class="col-2">
-                                 
                                 <div class=" input-group">
                                   <input list="brow" class=" input--style-1" id="browinput" autocomplete="off" placeholder="الكلية *" runat="server" required="required" oninvalid="this.setCustomValidity('الكلية مطلوبه')" oninput="setCustomValidity('')"/>
                                   <datalist id="brow"  runat="server">
@@ -265,11 +265,14 @@
     </form>
       <!-- Jquery JS-->
     <script src="vendor/vendorindex/jquery/jquery.min.js"></script>
-    <script src= "https://atfawry.fawrystaging.com/ECommercePlugin/scripts/V2/FawryPay.js"></script>
     <script src="js/sha.js"></script>
     <!-- Main JS-->
     <script src="js/global.js"></script>
   <script src="js/indexjsFile.js"></script>
+    <script src= "https://atfawry.fawrystaging.com/ECommercePlugin/scripts/V2/FawryPay.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/forge/0.8.2/forge.all.min.js"></script>
+     
     <script>
         
         var close = document.getElementsByClassName("closebtn");
@@ -284,17 +287,18 @@
         }
 
        var sttus=<%=status%>;
-       
+       var flagPaid="<%=flagPaid%>";
         if(sttus==0)
-        {
-            $('#li1').addClass('active');
+        {   if(flagPaid==true)
+            {
+            $('#li1').addClass('active');}
+            
         }
         else if(sttus==1)
         {   $('#li1').addClass('active');
             $('#li1 a').addClass('active');
             $('#li2').addClass('active');
             $('#li2 a').addClass('active');
-        
         }
 
         else if(sttus==2||sttus==3)
@@ -322,7 +326,7 @@
         }
 
         function changestatus()
-        {alert('hi');
+        {
             for(var i=1;i<5;i++)
             {
                 $('#li'+i).addClass('active');
@@ -330,28 +334,33 @@
             }
         }
            
- var chargeRequest = {};
+ 
+    </script>
+    <!--script for api fawry-->
+    <script>
+        var ref=<%=refunumber%>;
+        var id=<%=id%>;
+         var chargeRequest = {};
               chargeRequest.language = 'eg-ar';
               chargeRequest.merchantCode = '1tSa6uxz2nSuj+kDUGVlyw';
-              chargeRequest.merchantRefNumber = parseInt(document.getElementById("tn"));//parseInt(document.getElementById("nid").value);
-             // alert(refunumber);
+              chargeRequest.merchantRefNumber = ref;
               chargeRequest.customer = {}
-              chargeRequest.customer.name = document.getElementById('nid').value;
-              chargeRequest.customer.mobile = document.getElementById('phoneNum').value;
-              chargeRequest.customer.email = document.getElementById('email').value;
+              chargeRequest.customer.name =<%=nid%>;// document.getElementById('nid').value;
+              chargeRequest.customer.mobile = <%=mobiletxt%>;
+              //chargeRequest.customer.email = ;
               chargeRequest.order = {};
               //chargeRequest.order.description = document.getElementById('nid').value;
-              chargeRequest.order.description = document.getElementById('name').value;
               chargeRequest.order.expiry = '720';
               chargeRequest.order.orderItems = [];
               var item = {};
-              item.productSKU = parseInt(document.getElementById("colge").value);
+              item.productSKU = 1;//parseInt(document.getElementById("colge").value);
               //alert(item.productSKU);
               item.quantity = 1;
-              item.description = document.getElementById("nid").value;
+              item.description = <%=nid%>//document.getElementById("nid").value;
               item.price=0;
           if (item.productSKU != null) {
-              item.price = parseInt(document.getElementById("price").value);
+              item.price = parseInt(12.8//document.getElementById("price").value
+                  );
           
           }
               item.quantity =1;
@@ -382,57 +391,82 @@
 		   
 		}
 
+		$(document).ready(function () {
+		    var URLPage=window.location.href;
+		    if(URLPage.indexOf("?chargeResponse=") > -1) {
+		        const queryString = window.location.search;
+		        console.log(queryString);  
+		        const urlParams = new URLSearchParams(queryString);
+		        console.log(urlParams);  
+		       
+		        const product = urlParams.get('merchantRefNumber')
+		        console.log(product);   
+		    }
+		});
+	function sucessFunction()
+	{
+	    var splitURL=location.href.toString().split("?");
 
-		
-      
-    </script>
-    <!--script for api fawry-->
-    <script>
-        function FawryPayAtFawry() {
+	        $.ajax({
+	            type: 'POST',
+	            url: 'index.aspx/assignRefNumToDB',
+	            contentType: "application/json; charset=utf-8",
+	            dataType: 'json',
+	            data:'{reff:'+ref+',id:'+id+'}',
+	            success: function () {
+	                alert(' تم الحفظ');
+	            }
+                , faild: function () {
+                 alert('لم يتم الحفظ');
+                 }
+	        });
+		}
+
+//        function FawryPayAtFawry() {
         
-            let merchantCode    = "1tSa6uxz2nSuj+kDUGVlyw";
-let merchantRefNum  = 'ee2001';
-let merchant_cust_prof_id  = 1024;
-let payment_method = "PAYATFAWRY";
-let amount = "30";
-let customerName='hend';
-let mobile ='200000002022';
-let merchant_sec_key =  "259af31fc2f74453b3a55739b21ae9ef";
-let signature_body = merchantCode.concat(merchantCode , merchantRefNum , merchant_cust_prof_id , payment_method , amount , merchant_sec_key);
-let sha256 = new jsSHA('SHA-256', 'TEXT');
-sha256.update(signature_body);
-let hash_signature = sha256.getHash("HEX");
-axios.post('https://atfawry.fawrystaging.com/ECommerceWeb/Fawry/payments/charge', {
-                'merchantCode' : merchantCode,
-                'merchantRefNum' : merchantRefNum,
-                'customerName' : customerName,
-                'customerMobile' : mobile,
-                'customerEmail' : 'example@gmail.com',
-                'customerProfileId' : '1024',
-                'amount' : '30',
-                'paymentExpiry' : '1631138400000',
-                'currencyCode' : 'EGP',
-                'language' : 'en-gb',
-                'chargeItems' : {
-                                      'itemId' : '897fa8e81be26df25db592e81c31c',
-                                      'description' : 'Item Description',
-                                      'price' : '580.55',
-                                      'quantity' : '1'
-                                  },
-                'signature' : hash_signature,
-                'payment_method' : payment_method,
-                'description': 'example description'
-            })
-                .then(response => {
-                    // Get Response Contents
-                    let type          = response.data.type;
-                    let paymentStatus = response.data.paymentStatus;
-                    //
-                })
-                .catch(error => {
-                    console.log(error.response.data)
-                })
-}
+//            let merchantCode    = "1tSa6uxz2nSuj+kDUGVlyw";
+//let merchantRefNum  = 'ee2001';
+//let merchant_cust_prof_id  = 1024;
+//let payment_method = "PAYATFAWRY";
+//let amount = "30";
+//let customerName='hend';
+//let mobile ='200000002022';
+//let merchant_sec_key =  "259af31fc2f74453b3a55739b21ae9ef";
+//let signature_body = merchantCode.concat(merchantCode , merchantRefNum , merchant_cust_prof_id , payment_method , amount , merchant_sec_key);
+//let sha256 = new jsSHA('SHA-256', 'TEXT');
+//sha256.update(signature_body);
+//let hash_signature = sha256.getHash("HEX");
+//axios.post('https://atfawry.fawrystaging.com/ECommerceWeb/Fawry/payments/charge', {
+//                'merchantCode' : merchantCode,
+//                'merchantRefNum' : merchantRefNum,
+//                'customerName' : customerName,
+//                'customerMobile' : mobile,
+//                'customerEmail' : 'example@gmail.com',
+//                'customerProfileId' : '1024',
+//                'amount' : '30',
+//                'paymentExpiry' : '1631138400000',
+//                'currencyCode' : 'EGP',
+//                'language' : 'en-gb',
+//                'chargeItems' : {
+//                                      'itemId' : '897fa8e81be26df25db592e81c31c',
+//                                      'description' : 'Item Description',
+//                                      'price' : '580.55',
+//                                      'quantity' : '1'
+//                                  },
+//                'signature' : hash_signature,
+//                'payment_method' : payment_method,
+//                'description': 'example description'
+//            })
+//                .then(response => {
+//                    // Get Response Contents
+//                    let type          = response.data.type;
+//                    let paymentStatus = response.data.paymentStatus;
+//                    //
+//                })
+//                .catch(error => {
+//                    console.log(error.response.data)
+//                })
+//}
 
     </script>
 

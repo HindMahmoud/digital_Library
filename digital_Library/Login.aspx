@@ -13,15 +13,15 @@
     <link href="vendor/vendorindex/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" />
     <style>
         h1 {
-        text-align:center;color:white}
+        text-align:center;color:#512a0b}
             h1 a {
-            text-decoration:none;color:white}
+            text-decoration:none;color:#512a0b}
                 h1 a:hover {
-           color:white }
+           color:#512a0b }
             h1 a:active {
-             text-decoration:none;color:white}
+             text-decoration:none;color:#512a0b}
                 h1 a:focus {
-                 text-decoration:none;color:white}
+                 text-decoration:none;color:#512a0b}
         #forget {
         color:orangered;}
     </style>

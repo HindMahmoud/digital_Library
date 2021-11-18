@@ -16,66 +16,75 @@ namespace digital_Library
     {
         digitalLibEntities d = new digitalLibEntities();
       public  int id = 0;
-        string refunumber = "";
+        public string refunumber = "";
+        public string nid = "";
+        public string mobiletxt = "";
         public int status=-1;
-       public student stu = new student();
-       
-        protected void Page_Load(object sender, EventArgs e)
+        public bool flagPaid = false;
+        public student stu = new student();
+       protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["id"] != null)
             {
                 id = int.Parse(Session["id"].ToString());
                 stu = (from m in d.students where m.id_student == id select m).FirstOrDefault();
-                if (stu.status != null && stu.Flag_pay != null)
-                { status = int.Parse(stu.status.ToString()); }
-                else if (stu.status == null && stu.Flag_pay != null)
+                nid = stu.national_id;
+                mobiletxt = stu.phone;
+                if (stu.Flag_pay == null)
                 {
+                    Random tr = new Random();
+                    int r = tr.Next(100000, 999999);
+                    refunumber = r + stu.id_student.ToString();
+                   // var refnum = stu.refnumber;
+                }
+              else if (stu.status != null && stu.Flag_pay != null)
+                {//paid and have steps in progress 
+                    status = int.Parse(stu.status.ToString());
+                    flagPaid = true;
+                }
+                else if (stu.status == null && stu.Flag_pay != null)
+                {//paid and hasn't any steps 
                     status = 0;
                 }
             }
             else Response.Redirect("Login.aspx");
-
-            //Random tr = new Random();
-            //int r = tr.Next(1, 100);
-            var t = d.students.Where(a => a.id_student == id).FirstOrDefault();
-            refunumber = t.id_student + t.national_id;
-            var refnum = stu.refnumber;
-            if (refnum == null)
-            {
-                t.refnumber = refunumber;
-                d.SaveChanges();
-            }
-            //else Response.Redirect("index.aspx");
-
-           
+            
             alertmsg();
             if (!IsPostBack)
             {
-               
-                if (status > 0)
+
+               if (status > 0)
                 {
                     Getdata();
                 }
+                if (status == 0 && flagPaid == true)
+                { GetsomeStudata(); }
                 PopulateDataList();
                 PopulateDataList2();
             }
         }
-
-        
-
+        private void GetsomeStudata()
+        {
+            var stu = (from mn in d.students where mn.id_student == id select mn).FirstOrDefault();
+            {if (stu != null)
+                {
+                    name.Value = stu.name_student;
+                    mobtxt.Value = stu.phone;
+                }
+            }
+        }
         #region Fulldata()
         private void Getdata()
         {
 
             var stu = (from mn in d.students where mn.id_student==id select mn).FirstOrDefault();
-            if (stu.name_student != null && stu.faculty_id != null)
+            if (stu.email_address != null && stu.faculty_id != null)
             {
-                name.Value = stu.name_student;
+                
                 arabic_add.Value = stu.arabic_address;
                 eng_add.Value = stu.eng_add;
                 jobtxt.Value = stu.Job;
                 jobplacetxt.Value = stu.Job_place;
-                mobtxt.Value = stu.phone;
                 emtxt.Value = stu.email_address;
                 supertxt.Value = stu.Supervisor;
                 partenarstxt.Value = stu.Co_supervisor;
@@ -284,7 +293,15 @@ namespace digital_Library
         }
 
         #endregion
-
+        #region refnumber
+        private static Random random = new Random();
+        public static string RandomString()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, 1)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+        #endregion
 
         protected void Unnamed_Click(object sender, EventArgs e)
         {
@@ -422,6 +439,11 @@ namespace digital_Library
 
                 }
             }
+
+        protected void btn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("login.aspx");
+        }
         //public void dbb()
         //{
         //    PostJson("https://atfawry.fawrystaging.com/ECommerceWeb/Fawry/payments/status", new fawrypay_request
@@ -466,5 +488,21 @@ namespace digital_Library
         //        throw new ApplicationException(message);
         //    }
         //}
+
+        #region assignRefNumToDB
+            [WebMethod]
+        private static void assignRefNumToDB(string reff,int id)
+        {
+            digitalLibEntities d = new digitalLibEntities();
+            var r = (d.students.Where(a => a.id_student == id)).FirstOrDefault();
+            if (r != null)
+            {
+                r.refnumber = reff;
+                    d.SaveChanges();
+               
+            }
+
+        }
+        #endregion
     }
 }
