@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="css/bootstrap-rtl.css"/>
     
     <link href="vendor/vendorindex/font-awesome-4.7/css/font-awesome.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
   <%--  <link rel="stylesheet" href="css/style1.css"/>--%>
    <style>
        body {
@@ -26,6 +28,15 @@
        .sorting {
        padding-left:15px !important}
 
+       .switch-toggle
+                   {
+                     width: 15em;
+                   }
+
+                   .switch-toggle label:not(.disabled)
+                   {
+                       cursor: pointer;
+                   }
    </style>
 </head>
     
@@ -91,20 +102,8 @@
                    <td><%=i.Co_supervisor %></td>
                    <td><%=i.Flag_pay %></td>
                    <td>
-                   <style>
-                   .switch-toggle
-                   {
-                     width: 15em;
-                   }
-
-                   .switch-toggle label:not(.disabled)
-                   {
-                       cursor: pointer;
-                   }
-
-                   </style>
-                   <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
-
+                   
+                   
                    <div class="switch-toggle switch-3 switch-candy">
                    <input id="on" name="state-d" type="radio" checked="" />
                    <label for="on" onclick="">مقبول</label>
@@ -112,7 +111,7 @@
                    <input id="na" name="state-d" type="radio" checked="checked" />
                    <label for="na" class="disabled" onclick="">لم يحدد</label>
 
-                   <input id="off" name="state-d" type="radio" />
+                   <input id="<%=i.id%>" name="state-d" type="radio" />
                    <label for="off" onclick="">مرفوض</label>
 
                    <a></a>
