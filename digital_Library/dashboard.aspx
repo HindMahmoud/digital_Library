@@ -63,6 +63,7 @@
                   <th>عنوان المخطط</th>
                   <th>المشاركين/المشرفين</th>
                   <th>حالة الدفع</th>
+                  <th>حالة القبول</th>
                 </tr>
               </thead>
                 <tbody>
@@ -89,7 +90,37 @@
                    <td><%=i.chart_title %></td>
                    <td><%=i.Co_supervisor %></td>
                    <td><%=i.Flag_pay %></td>
+                   <td>
+                   <style>
+                   .switch-toggle
+                   {
+                     width: 15em;
+                   }
+
+                   .switch-toggle label:not(.disabled)
+                   {
+                       cursor: pointer;
+                   }
+
+                   </style>
+                   <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
+
+                   <div class="switch-toggle switch-3 switch-candy">
+                   <input id="on" name="state-d" type="radio" checked="" />
+                   <label for="on" onclick="">مقبول</label>
+
+                   <input id="na" name="state-d" type="radio" checked="checked" />
+                   <label for="na" class="disabled" onclick="">لم يحدد</label>
+
+                   <input id="off" name="state-d" type="radio" />
+                   <label for="off" onclick="">مرفوض</label>
+
+                   <a></a>
+                   </div>
+
+                   </td>
                    </tr>
+  
                    <% }} %>
                 </tbody>
             </table>
