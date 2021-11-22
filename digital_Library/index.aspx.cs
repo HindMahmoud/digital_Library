@@ -379,12 +379,9 @@ namespace digital_Library
                 { stu.degree_academic = "ماجستير"; }
                 else stu.degree_academic = "دكتوراة";
             }
-
-
-            d.SaveChanges();
+           d.SaveChanges();
             
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             if (fileup.HasFiles)

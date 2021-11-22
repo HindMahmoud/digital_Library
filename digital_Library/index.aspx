@@ -63,7 +63,7 @@
                             <asp:Label runat="server" class="infolabel" ID="Info">الخطوة 1 يرجي دفع مصروفات الافادة</asp:Label>
                              <br /> 
                               <div id="fawerydiv" runat="server" style="margin-top:15px">
-                                 <input type="button"  class="btn btn-primary" onclick="FawryPay.checkout(chargeRequest, , 'http://ecpu.sohag-univ.edu.eg/digitalLib/index.aspx')"   alt="Edfa3 Fawry" id="xsrrs" style=" height:47px; width:103px; background:url(https://www.atfawry.com/ECommercePlugin/resources/images/atfawry-ar-logo.png);"/>
+                                 <input type="button"  class="btn btn-primary" onclick="FawryPay.checkout(chargeRequest,'' , '')"   alt="Edfa3 Fawry" id="xsrrs" style=" height:47px; width:103px; background:url(https://www.atfawry.com/ECommercePlugin/resources/images/atfawry-ar-logo.png);"/>
                               </div>
                          </div>
                     
@@ -390,24 +390,31 @@
 		    // Your implementation
 		   
 		}
-
+		function GetParameterValues(param) {  
+		    var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');  
+		    for (var i = 0; i < url.length; i++) {  
+		        var urlparam = url[i].split('=');  
+		        if (urlparam[0] == param) {  
+		            return urlparam[1];  
+		        }  
+		    }}
+		function GetParameterValues1(param) {  
+		    
+		    var ele= param.split(',');
+		    var eleValue= ele[0].split(':');
+		    ref=eleValue[1];
+		    }
 		$(document).ready(function () {
 		    var URLPage=window.location.href;
 		    if(URLPage.indexOf("?chargeResponse=") > -1) {
-		        const queryString = window.location.search;
-		        console.log(queryString);  
-		        const urlParams = new URLSearchParams(queryString);
-		        console.log(urlParams);  
-		       
-		        const product = urlParams.get('merchantRefNumber')
-		        console.log(product);   
+		        const queryString =GetParameterValues('chargeResponse');// window.location.search;
+		        alert(queryString);
+		        GetParameterValues1(queryString);
+		        
 		    }
 		});
 	function sucessFunction()
-	{
-	    var splitURL=location.href.toString().split("?");
-
-	        $.ajax({
+	{ $.ajax({
 	            type: 'POST',
 	            url: 'index.aspx/assignRefNumToDB',
 	            contentType: "application/json; charset=utf-8",
