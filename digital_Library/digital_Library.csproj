@@ -135,7 +135,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="print.aspx" />
-    <Content Include="RejectedStu.aspx" />
     <Content Include="vendor\vendorindex\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
     <Content Include="vendor\vendorindex\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
     <Content Include="vendor\vendorindex\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
@@ -270,13 +269,6 @@
       <DependentUpon>print.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RejectedStu.aspx.cs">
-      <DependentUpon>RejectedStu.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RejectedStu.aspx.designer.cs">
-      <DependentUpon>RejectedStu.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ULogin.aspx.cs">
       <DependentUpon>ULogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -347,23 +347,17 @@
               chargeRequest.customer = {}
               chargeRequest.customer.name =<%=nid%>;// document.getElementById('nid').value;
               chargeRequest.customer.mobile = <%=mobiletxt%>;
-              //chargeRequest.customer.email = ;
+              
               chargeRequest.order = {};
-              //chargeRequest.order.description = document.getElementById('nid').value;
+              chargeRequest.order.description = <%=nid%>;
               chargeRequest.order.expiry = '720';
               chargeRequest.order.orderItems = [];
               var item = {};
-              item.productSKU = 1;//parseInt(document.getElementById("colge").value);
-              //alert(item.productSKU);
+              item.productSKU = 1;
               item.quantity = 1;
-              item.description = <%=nid%>//document.getElementById("nid").value;
-              item.price=0;
-          if (item.productSKU != null) {
-              item.price = parseInt(12.8//document.getElementById("price").value
-                  );
-          
-          }
-              item.quantity =1;
+              item.description = <%=nid%>
+              item.price = parseInt(5.00);
+             
               chargeRequest.order.orderItems.push(item);
               txt = chargeRequest.merchantCode + chargeRequest.merchantRefNumber + item.productSKU + item.quantity + item.price;
               
@@ -377,9 +371,7 @@
                   var hashText = md.digest().toHex();
                   return hashText
               }
-          //}
-
-		 
+         
 		function requestCanceldCallBack(merchantRefNum) {		 
 		    // Your implementation to handle the calncel button	
 		    // window.location.href = "errorPage.aspx";
@@ -410,6 +402,7 @@
 		        const queryString =GetParameterValues('chargeResponse');// window.location.search;
 		        alert(queryString);
 		        GetParameterValues1(queryString);
+		        sucessFunction();
 		        
 		    }
 		});
