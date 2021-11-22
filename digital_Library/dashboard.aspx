@@ -111,7 +111,7 @@
                    <input id="na" name="state-d" type="radio" checked="checked" />
                    <label for="na" class="disabled" onclick="">لم يحدد</label>
 
-                   <input id="<%=i.id%>" name="state-d" type="radio" />
+                   <input id="off" name="state-d" type="radio" />
                    <label for="off" onclick="">مرفوض</label>
 
                    <a></a>
