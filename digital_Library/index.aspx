@@ -407,7 +407,8 @@
 		    }
 		});
 	function sucessFunction()
-	{ $.ajax({
+	{ alert(ref+",id="+id);
+	    $.ajax({
 	            type: 'POST',
 	            url: 'index.aspx/assignRefNumToDB',
 	            contentType: "application/json; charset=utf-8",

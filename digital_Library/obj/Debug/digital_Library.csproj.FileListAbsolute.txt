@@ -61,3 +61,5 @@ E:\sohag_univer\digi\digital_Library\digital_Library\bin\Microsoft.CodeDom.Provi
 E:\sohag_univer\digi\digital_Library\digital_Library\obj\Debug\digital_Library.csprojResolveAssemblyReference.cache
 E:\sohag_univer\digi\digital_Library\digital_Library\obj\Debug\digital_Library.dll
 E:\sohag_univer\digi\digital_Library\digital_Library\obj\Debug\digital_Library.pdb
+E:\sohag_univer\digi\digital_Library\digital_Library\bin\System.Buffers.dll
+E:\sohag_univer\digi\digital_Library\digital_Library\bin\System.Buffers.xml
