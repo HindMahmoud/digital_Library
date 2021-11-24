@@ -73,3 +73,4 @@ C:\Users\amrfa\Source\Repos\HindMahmoud\digital_Library\digital_Library\obj\Debu
 C:\Users\amrfa\Source\Repos\HindMahmoud\digital_Library\digital_Library\obj\Debug\digital_Library.csproj.CopyComplete
 C:\Users\amrfa\Source\Repos\HindMahmoud\digital_Library\digital_Library\obj\Debug\digital_Library.dll
 C:\Users\amrfa\Source\Repos\HindMahmoud\digital_Library\digital_Library\obj\Debug\digital_Library.pdb
+C:\Users\amrfa\Source\Repos\HindMahmoud\digital_Library\digital_Library\obj\Debug\digital_Library.csproj.AssemblyReference.cache
