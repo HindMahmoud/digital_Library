@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="digitalLibModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="faculty">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="faculty_name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="students">
+    <Key>
+      <PropertyRef Name="id_student" />
+    </Key>
+    <Property Name="id_student" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_student" Type="nvarchar" MaxLength="300" />
+    <Property Name="national_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="password_student" Type="nvarchar(max)" />
+    <Property Name="faculty_id" Type="int" />
+    <Property Name="phone" Type="nvarchar" MaxLength="25" />
+    <Property Name="Job" Type="nvarchar(max)" />
+    <Property Name="Job_place" Type="nvarchar(max)" />
+    <Property Name="email_address" Type="nvarchar" MaxLength="300" />
+    <Property Name="department" Type="nvarchar(max)" />
+    <Property Name="Division" Type="nvarchar" MaxLength="200" />
+    <Property Name="Specialization" Type="nvarchar" MaxLength="100" />
+    <Property Name="academic_year" Type="nvarchar" MaxLength="10" />
+    <Property Name="chart_title" Type="nvarchar(max)" />
+    <Property Name="Supervisor" Type="nvarchar" MaxLength="500" />
+    <Property Name="Co-supervisor" Type="nvarchar(max)" />
+    <Property Name="notes" Type="nvarchar(max)" />
+    <Property Name="Flag_pay" Type="bit" />
+    <Property Name="date_pay" Type="nvarchar" MaxLength="50" />
+    <Property Name="date_print" Type="nvarchar" MaxLength="50" />
+    <Property Name="iduniversity" Type="int" />
+    <Property Name="univ_name" Type="nvarchar(max)" />
+    <Property Name="degree_academic" Type="nvarchar" MaxLength="200" />
+    <Property Name="search_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="employee_user" Type="nvarchar" MaxLength="70" />
+    <Property Name="refnumber" Type="nvarchar(max)" />
+    <Property Name="arabic_address" Type="nvarchar(max)" />
+    <Property Name="eng_add" Type="nvarchar(max)" />
+    <Property Name="status" Type="tinyint" />
+    <Property Name="student_file" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="university">
+    <Key>
+      <PropertyRef Name="id_uni" />
+    </Key>
+    <Property Name="id_uni" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_univ" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id_admin" />
+    </Key>
+    <Property Name="id_admin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="70" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="digitalLibModelStoreContainer">
+    <EntitySet Name="faculty" EntityType="Self.faculty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="students" EntityType="Self.students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="university" EntityType="Self.university" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -488,14 +488,15 @@ namespace digital_Library
 
         #region assignRefNumToDB
             [WebMethod]
-        private static void assignRefNumToDB(string reff,int id)
+        public static void assignRefNumToDB(string reff,int idStu)
         {
             digitalLibEntities d = new digitalLibEntities();
-            var r = (d.students.Where(a => a.id_student == id)).FirstOrDefault();
+           
+            var r = (d.students.Where(a => a.id_student == idStu)).FirstOrDefault();
             if (r != null)
             {
                 r.refnumber = reff;
-                    d.SaveChanges();
+                d.SaveChanges();
                
             }
 

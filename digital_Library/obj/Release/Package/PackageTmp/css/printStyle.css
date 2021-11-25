@@ -1,0 +1,166 @@
+﻿
+
+body {
+    font-family: " arial Droid Arabic Kufi";
+  direction: rtl;
+  text-align: right;
+}
+.wrapper--w680 {
+    max-width: 615px !important;
+
+}
+
+.card-1 .card-body {
+    padding-top: 5px !important;
+    /*background-image: url('../images/errorprint.PNG');*/
+  
+}
+
+
+h2.title {
+color:red;
+font-size:13px !important;
+
+
+}
+h4.title {
+font-size:40px;
+font-weight:bold;
+
+}
+h6.title {
+
+    font-size:18px;
+font-weight:bold;
+text-decoration:none;
+margin-top:20px
+}
+
+.header {
+    border-bottom: solid;
+    border-bottom-color: black;
+    border-bottom-width: 4px;
+
+}
+
+
+.subheader {
+    font-size:12px;font-weight:bold;text-align:center;
+    margin-right: 6px;
+    padding: 0 8px;
+
+}
+
+
+.divone {
+padding:3px 0;
+}
+
+.address {
+font-size:15px;
+text-decoration-line:underline;
+font-weight:bold;
+
+}
+
+.points {
+
+padding:5px;
+    text-align: right;
+    line-height: 2;
+}
+
+
+.elements {
+font-size:15px;
+
+font-weight:bold;
+}
+
+
+.divtwo {
+padding-top:15px
+}
+
+.title2 {
+        line-height: 1.5;
+      font-size:18px;
+font-weight:bold;
+text-decoration:none;
+margin-top:33px;
+text-align:right;
+}
+
+.divthree {
+    padding-top:15px;
+ 
+}
+    .divthree span.elements {
+    text-align:center;
+    font-size: 24px;
+    font-weight: 700;
+    }
+
+
+.footer {
+
+    /*margin-top:12px;*/
+     border-top: solid;
+    border-top-color: black;
+    border-top-width: 4px;
+    padding-top:2px;
+}
+
+    .footer .emails {
+    text-align:left;
+    text-decoration:underline;
+    
+    }
+
+    .footer span {
+    font-size:12px;
+    font-weight:normal;
+    }
+
+    
+
+
+     @media print {
+
+        #sub {
+     
+            display:none;   }
+          
+        }
+.title, .address, .subheader, .elements,button {
+text-align:right !important;}
+
+
+
+.sidenav {
+  /*height: 100%;
+  width: 200px;*/
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  /*background-color: #111;*/
+  overflow-x: hidden;
+  padding-top: 100px;
+}
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+.sidenav .fa {
+    padding: 20px;
+    font-size: 25px;
+}
+         

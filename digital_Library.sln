@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "digital_Library", "digital_Library\digital_Library.csproj", "{DC0F6E11-FB45-4ADA-ACF0-0A414BC03A6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIFawryResponse", "APIFawryResponse\APIFawryResponse.csproj", "{19E3C776-1328-4413-8B53-CB86CA44D0BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DC0F6E11-FB45-4ADA-ACF0-0A414BC03A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC0F6E11-FB45-4ADA-ACF0-0A414BC03A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC0F6E11-FB45-4ADA-ACF0-0A414BC03A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19E3C776-1328-4413-8B53-CB86CA44D0BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19E3C776-1328-4413-8B53-CB86CA44D0BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19E3C776-1328-4413-8B53-CB86CA44D0BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19E3C776-1328-4413-8B53-CB86CA44D0BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

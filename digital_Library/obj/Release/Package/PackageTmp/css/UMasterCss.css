@@ -1,0 +1,45 @@
+﻿ .navbar {
+        background-color:#743d3d;
+        }
+       .container-main {
+          padding-top:70px;
+        }
+.navbar-nav>li>a {
+    color:white;
+    font-size:16px !important;
+    padding-top:27px !important;
+}
+li:hover {background-color:#743d3d !important
+}
+li a:hover {background-color:#743d3d !important
+}
+   .s2 {
+      float:left
+  ;  margin:10px 22px;
+    font-size: 18px;
+    border-radius: 0%;
+    width: 150px;
+    padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	background: #3d3c90;
+    border: 1px solid #3d3c90; }
+        body {
+            background-color: #f1eff0;
+        }
+
+        #example_wrapper {
+            border-radius: 3px;
+            padding: 11px;
+            overflow-x: scroll;
+            background: white;
+        }
+        .bg-white {
+        background-color:white;padding-top:10px}
+        th {text-align:center
+        }
+        .lg {
+        padding:10px 40px;text-align:center}
+        .dataTables_filter>label{content:"بحث" !important
+        }
+
+ 

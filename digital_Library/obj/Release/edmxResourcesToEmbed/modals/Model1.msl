@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="digitalLibModelStoreContainer" CdmEntityContainer="digitalLibEntities">
+    <EntitySetMapping Name="faculties">
+      <EntityTypeMapping TypeName="digitalLibModel.faculty">
+        <MappingFragment StoreEntitySet="faculty">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="faculty_name" ColumnName="faculty_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="students">
+      <EntityTypeMapping TypeName="digitalLibModel.student">
+        <MappingFragment StoreEntitySet="students">
+          <ScalarProperty Name="student_file" ColumnName="student_file" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="univ_name" ColumnName="univ_name" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+          <ScalarProperty Name="name_student" ColumnName="name_student" />
+          <ScalarProperty Name="national_id" ColumnName="national_id" />
+          <ScalarProperty Name="password_student" ColumnName="password_student" />
+          <ScalarProperty Name="faculty_id" ColumnName="faculty_id" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="Job" ColumnName="Job" />
+          <ScalarProperty Name="Job_place" ColumnName="Job_place" />
+          <ScalarProperty Name="email_address" ColumnName="email_address" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="Division" ColumnName="Division" />
+          <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+          <ScalarProperty Name="academic_year" ColumnName="academic_year" />
+          <ScalarProperty Name="chart_title" ColumnName="chart_title" />
+          <ScalarProperty Name="Supervisor" ColumnName="Supervisor" />
+          <ScalarProperty Name="Co_supervisor" ColumnName="Co-supervisor" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="Flag_pay" ColumnName="Flag_pay" />
+          <ScalarProperty Name="date_pay" ColumnName="date_pay" />
+          <ScalarProperty Name="date_print" ColumnName="date_print" />
+          <ScalarProperty Name="iduniversity" ColumnName="iduniversity" />
+          <ScalarProperty Name="degree_academic" ColumnName="degree_academic" />
+          <ScalarProperty Name="search_date" ColumnName="search_date" />
+          <ScalarProperty Name="employee_user" ColumnName="employee_user" />
+          <ScalarProperty Name="refnumber" ColumnName="refnumber" />
+          <ScalarProperty Name="arabic_address" ColumnName="arabic_address" />
+          <ScalarProperty Name="eng_add" ColumnName="eng_add" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="universities">
+      <EntityTypeMapping TypeName="digitalLibModel.university">
+        <MappingFragment StoreEntitySet="university">
+          <ScalarProperty Name="id_uni" ColumnName="id_uni" />
+          <ScalarProperty Name="name_univ" ColumnName="name_univ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="digitalLibModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
