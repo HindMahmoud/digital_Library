@@ -12,6 +12,7 @@
     <EntitySetMapping Name="students">
       <EntityTypeMapping TypeName="digitalLibModel.student">
         <MappingFragment StoreEntitySet="students">
+          <ScalarProperty Name="refNumber_fawry" ColumnName="refNumber_fawry" />
           <ScalarProperty Name="student_file" ColumnName="student_file" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="univ_name" ColumnName="univ_name" />

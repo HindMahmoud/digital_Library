@@ -44,5 +44,7 @@ namespace digital_Library.modals
         public string univ_name { get; set; }
         public Nullable<byte> status { get; set; }
         public string student_file { get; set; }
+        public string refNumber_fawry { get; set; }
+        public string signture { get; set; }
     }
 }

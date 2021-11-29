@@ -41,6 +41,7 @@
     <Property Name="eng_add" Type="nvarchar(max)" />
     <Property Name="status" Type="tinyint" />
     <Property Name="student_file" Type="nvarchar(max)" />
+    <Property Name="refNumber_fawry" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="university">
     <Key>

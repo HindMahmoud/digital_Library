@@ -16,12 +16,13 @@ namespace digital_Library
     {
         digitalLibEntities d = new digitalLibEntities();
       public  int id = 0;
-        public string refunumber = "";
+        public string refunumber = "", stuname = "";
         public string nid = "";
         public string mobiletxt = "";
         public int status=-1;
         public bool flagPaid = false;
         public student stu = new student();
+        public string orderNumber = "";
        protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["id"] != null)
@@ -30,12 +31,20 @@ namespace digital_Library
                 stu = (from m in d.students where m.id_student == id select m).FirstOrDefault();
                 nid = stu.national_id;
                 mobiletxt = stu.phone;
+               stuname = stu.name_student;
                 if (stu.Flag_pay == null)
                 {
-                    Random tr = new Random();
-                    int r = tr.Next(100000, 999999);
-                    refunumber = r + stu.id_student.ToString();
-                   // var refnum = stu.refnumber;
+                    if (stu.refnumber == null)
+                    {//want to get refnumber
+                        Random tr = new Random();
+                        int r = tr.Next(100000, 999999);
+                       string rand= RandomString();
+                        refunumber = r + stu.id_student.ToString()+rand;
+                    }
+                    else if(stu.refnumber!=null&&stu.refNumber_fawry!=null){
+                        fawerydiv.Visible = false;
+                    }
+                   
                 }
               else if (stu.status != null && stu.Flag_pay != null)
                 {//paid and have steps in progress 
@@ -441,65 +450,33 @@ namespace digital_Library
         {
             Response.Redirect("login.aspx");
         }
-        //public void dbb()
-        //{
-        //    PostJson("https://atfawry.fawrystaging.com/ECommerceWeb/Fawry/payments/status", new fawrypay_request
-        //    {
-        //        merchantCode = "1tSa6uxz2nRlhbmxHHde5A==",
-        //        merchantRefNum = "99900642041",
-        //        customerName = "Ahmed Ali",
-        //        customerMobile = "01234567891",
-        //        customerEmail = "example@gmail.com",
-        //        customerProfileId = "777777",
-        //        amount = 580.55,
-        //        paymentExpiry : 1631138400000,
-        //        currencyCode = "EGP",
-        //        language = "en-gb",
-        //        chargeItems =  {
-        //                           itemId =  "897fa8e81be26df25db592e81c31c",
-        //                           description =  "Item Description",
-        //                           price =  580.55,
-        //                           quantity =  1
-        //                         },
-        //        signature = "3f527d0209f4fa5e370caf46f66597c6a7c04580c827ca1f29927ec0d9215131",
-        //        payment_method = "PAYATFAWRY",
-        //        description = "example description"
-        //    });
-        //}
-        //private static void PostJson(string uri, fawrypay_request postParameters)
-        //{
-        //    string postData = JsonConvert.SerializeObject(postParameters);
-        //    byte[] bytes = System.Text.Encoding.UTF8.GetBytes(postData);
-        //    var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
-        //    httpWebRequest.Method = "GET";
-        //    httpWebRequest.ContentLength = bytes.Length;
-        //    httpWebRequest.ContentType = "text/json";
-        //    using (Stream requestStream = httpWebRequest.GetRequestStream())
-        //    {
-        //        requestStream.Write(bytes, 0, bytes.Count());
-        //    }
-        //    var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-        //    if (httpWebResponse.StatusCode != HttpStatusCode.OK)
-        //    {
-        //        string message = String.Format("GET failed. Received HTTP {0}", httpWebResponse.StatusCode);
-        //        throw new ApplicationException(message);
-        //    }
-        //}
+       
 
         #region assignRefNumToDB
             [WebMethod]
-        public static void assignRefNumToDB(string reff,int idStu)
+        public static void assignRefNumToDB(string reff, string refFawry, string orderStatus,string signtureVar)
         {
             digitalLibEntities d = new digitalLibEntities();
-           
-            var r = (d.students.Where(a => a.id_student == idStu)).FirstOrDefault();
-            if (r != null)
+           int id_user = int.Parse(HttpContext.Current.Session["id"].ToString());
+            var r = (d.students.Where(a=>a.id_student==id_user)).FirstOrDefault();
+            if (orderStatus == "PAID")
             {
-                r.refnumber = reff;
-                d.SaveChanges();
-               
-            }
+                if (r != null)
+                {
+                    r.status = 1;
+                    r.refNumber_fawry = refFawry;
+                    r.refnumber = reff;
+                    r.signture = signtureVar;
+                    d.SaveChanges();
 
+                }
+            }
+            else {
+                r.refNumber_fawry = refFawry;
+                r.refnumber = reff;
+                r.signture = signtureVar;
+                d.SaveChanges();
+            }
         }
         #endregion
     }

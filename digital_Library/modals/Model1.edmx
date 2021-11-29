@@ -46,6 +46,8 @@
           <Property Name="eng_add" Type="nvarchar(max)" />
           <Property Name="status" Type="tinyint" />
           <Property Name="student_file" Type="nvarchar(max)" />
+          <Property Name="refNumber_fawry" Type="nvarchar(max)" />
+          <Property Name="signture" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="university">
           <Key>
@@ -113,6 +115,8 @@
           <Property Name="univ_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="Byte" />
           <Property Name="student_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="refNumber_fawry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="signture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="university">
           <Key>
@@ -152,6 +156,8 @@
           <EntitySetMapping Name="students">
             <EntityTypeMapping TypeName="digitalLibModel.student">
               <MappingFragment StoreEntitySet="students">
+                <ScalarProperty Name="signture" ColumnName="signture" />
+                <ScalarProperty Name="refNumber_fawry" ColumnName="refNumber_fawry" />
                 <ScalarProperty Name="student_file" ColumnName="student_file" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="univ_name" ColumnName="univ_name" />

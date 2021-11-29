@@ -41,6 +41,7 @@
     <Property Name="univ_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="status" Type="Byte" />
     <Property Name="student_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="refNumber_fawry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="university">
     <Key>
