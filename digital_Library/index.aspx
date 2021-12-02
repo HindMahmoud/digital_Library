@@ -29,7 +29,10 @@
 	<link href="css/bootstrap-rtl.css" rel="stylesheet" media="all"/>
     <link href="css/indexstyle.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://www.atfawry.com/atfawry/plugin/assets/payments/css/fawrypay-payments.css"/>
-   
+   <style>
+       .top_rounded {
+       display:none;}
+   </style>
 </head>
 
 <body >
@@ -66,7 +69,7 @@
                                  <%--<input type="button"  class="btn btn-primary" onclick="FawryPay.checkout(chargeRequest,'http://localhost:51521/index.aspx' , 'http://localhost:51521/index.aspx')"   alt="Edfa3 Fawry" id="xsrrs" style=" height:47px; width:103px; background:url(https://www.atfawry.com/ECommercePlugin/resources/images/atfawry-ar-logo.png);"/>--%>
                                   <%--<input type="image" onclick="checkout();" src="https://www.atfawry.com/assets/img/FawryPayLogo.jpg"alt="pay-using-fawry" id="fawry-payment-btn"/>
                                   --%>
-                                  <button type="button"  onclick="checkout();"  id="fawry-payment-btn"><img src="https://www.atfawry.com/ECommercePlugin/resources/images/atfawry-ar-logo.png"  alt="fawry"/></button>
+                                  <button type="button"   onclick="checkout();"  id="fawry-payment-btn"><img src="https://www.atfawry.com/ECommercePlugin/resources/images/atfawry-ar-logo.png"  alt="fawry"/></button>
 	                              
 
                               </div>
@@ -419,7 +422,7 @@
 		    refnumber=eleValue[1];
 		    var order_status=ele[6];
 		    var fawryRefNumebr=ele[1].split('=')[1];
-		    var signture=ele[11].split('=')[1];
+		    var signture=ele[12].split('=')[1];
 		    sucessFunction(ref,fawryRefNumebr,order_status,signture);
 		    }
 		$(document).ready(function () {
@@ -436,7 +439,7 @@
 	    type: 'POST',
 	    url: 'index.aspx/assignRefNumToDB',
 	    contentType: "application/json; charset=utf-8",
-	    data: '{reff:"' + ref + '",refFawry:"'+refFawry+'",orderStatus:"'+ostatus+'",signture:"'+signtureVar+'"}',
+	    data: '{reff:"' + ref + '",refFawry:"'+refFawry+'",orderStatus:"'+ostatus+'",signtureVar:"'+signtureVar+'"}',
 	    dataType:'json',       
 	    success: function () {
 	                window.location.href="http://localhost:51521/index.aspx";  

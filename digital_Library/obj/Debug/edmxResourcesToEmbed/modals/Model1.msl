@@ -12,6 +12,8 @@
     <EntitySetMapping Name="students">
       <EntityTypeMapping TypeName="digitalLibModel.student">
         <MappingFragment StoreEntitySet="students">
+          <ScalarProperty Name="year_academic" ColumnName="year_academic" />
+          <ScalarProperty Name="signture" ColumnName="signture" />
           <ScalarProperty Name="refNumber_fawry" ColumnName="refNumber_fawry" />
           <ScalarProperty Name="student_file" ColumnName="student_file" />
           <ScalarProperty Name="status" ColumnName="status" />
@@ -60,6 +62,31 @@
           <ScalarProperty Name="id_admin" ColumnName="id_admin" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="requestTables">
+      <EntityTypeMapping TypeName="digitalLibModel.requestTable">
+        <MappingFragment StoreEntitySet="requestTable">
+          <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
+          <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+          <ScalarProperty Name="fawryFees" ColumnName="fawryFees" />
+          <ScalarProperty Name="orderAmount" ColumnName="orderAmount" />
+          <ScalarProperty Name="paymentAmount" ColumnName="paymentAmount" />
+          <ScalarProperty Name="customerMobile" ColumnName="customerMobile" />
+          <ScalarProperty Name="merchantRefNumber" ColumnName="merchantRefNumber" />
+          <ScalarProperty Name="fawryRefNumber" ColumnName="fawryRefNumber" />
+          <ScalarProperty Name="requestId" ColumnName="requestId" />
+          <ScalarProperty Name="student_id" ColumnName="student_id" />
+          <ScalarProperty Name="uniqe_ID" ColumnName="uniqe_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="merchent_ref_number">
+      <EntityTypeMapping TypeName="digitalLibModel.merchent_ref_number">
+        <MappingFragment StoreEntitySet="merchent_ref_number">
+          <ScalarProperty Name="merchent_ref_num" ColumnName="merchent_ref_num" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

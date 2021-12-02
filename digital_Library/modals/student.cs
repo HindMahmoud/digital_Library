@@ -46,5 +46,6 @@ namespace digital_Library.modals
         public string student_file { get; set; }
         public string refNumber_fawry { get; set; }
         public string signture { get; set; }
+        public string year_academic { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace digital_Library
         public bool flagPaid = false;
         public student stu = new student();
         public string orderNumber = "";
+                  
        protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["id"] != null)
@@ -36,15 +37,12 @@ namespace digital_Library
                 {
                     if (stu.refnumber == null)
                     {//want to get refnumber
-                        Random tr = new Random();
-                        int r = tr.Next(100000, 999999);
-                       string rand= RandomString();
-                        refunumber = r + stu.id_student.ToString()+rand;
+                        int random_num = GET_RandomNumberFunction();
+                        refunumber = RandomString() + random_num + stu.id_student.ToString()+ RandomString();
                     }
-                    else if(stu.refnumber!=null&&stu.refNumber_fawry!=null){
-                        fawerydiv.Visible = false;
-                    }
-                   
+                    else if(stu.refnumber!=null&&stu.refNumber_fawry!=null&&stu.signture!=null){
+                        fawerydiv.Attributes.Add("class", "top_rounded");
+                    }   
                 }
               else if (stu.status != null && stu.Flag_pay != null)
                 {//paid and have steps in progress 
@@ -277,6 +275,12 @@ namespace digital_Library
         }
         #endregion
 
+       public static int GET_RandomNumberFunction()
+        {
+            Random tr = new Random();
+            int r = tr.Next(100000, 999999);
+            return r;
+        }
 
         #region validation
         private string validfunction()
@@ -463,17 +467,35 @@ namespace digital_Library
             {
                 if (r != null)
                 {
+                    r.Flag_pay = true;
                     r.status = 1;
                     r.refNumber_fawry = refFawry;
-                    r.refnumber = reff;
+                    //check if merchent reference fawry
+                    var all_refernces = d.merchent_ref_number.Where(a => a.merchent_ref_num == reff).FirstOrDefault();
+                    if (all_refernces == null)
+                    {
+                        r.refnumber = reff;
+                    }
+                    else
+                    {
+                        r.refnumber = RandomString() + GET_RandomNumberFunction() + r.id_student.ToString() + RandomString();
+                    }
                     r.signture = signtureVar;
                     d.SaveChanges();
-
                 }
             }
             else {
                 r.refNumber_fawry = refFawry;
-                r.refnumber = reff;
+                //check if merchent reference fawry
+                var all_refernces = d.merchent_ref_number.Where(a => a.merchent_ref_num == reff).FirstOrDefault();
+                if (all_refernces == null)
+                {
+                    r.refnumber = reff;
+                }
+                else
+                {
+                    r.refnumber = RandomString() + GET_RandomNumberFunction() + r.id_student.ToString() + RandomString();
+                }
                 r.signture = signtureVar;
                 d.SaveChanges();
             }
