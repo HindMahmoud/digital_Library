@@ -29,20 +29,16 @@
     <Property Name="Co_supervisor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Flag_pay" Type="Boolean" />
-    <Property Name="date_pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="date_print" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="iduniversity" Type="Int32" />
     <Property Name="degree_academic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="search_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="employee_user" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
-    <Property Name="refnumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="arabic_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="eng_add" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="univ_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="status" Type="Byte" />
     <Property Name="student_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="refNumber_fawry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="signture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="year_academic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="university">
@@ -90,5 +86,10 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="merchent_ref_num" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PaidStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="refNumber_fawry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="signture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date_pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_stu" Type="Int32" />
   </EntityType>
 </Schema>

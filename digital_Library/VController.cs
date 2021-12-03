@@ -33,12 +33,15 @@ namespace digital_Library
             {
                 digitalLibEntities db = new digitalLibEntities();
                 var message = Request.CreateResponse(HttpStatusCode.OK);
-                var MerchentNumber = (from m in db.merchent_ref_number where m.merchent_ref_num == s.merchantRefNumber select m.merchent_ref_num).FirstOrDefault();
+                var MerchentNumber = (from m in db.merchent_ref_number where m.merchent_ref_num == s.merchantRefNumber select m).FirstOrDefault();
                 if (MerchentNumber != null)
                 {
-                    if (s.orderStatus == "PAID")
+                    if (s.orderStatus == "PAID"&&MerchentNumber.PaidStatus!="PAID")
                     {
-                        createNewRequest(MerchentNumber,s.requestId,s.paymentAmount,s.orderAmount,s.fawryFees,s.orderStatus,s.paymentMethod);
+                        createNewRequest(MerchentNumber.merchent_ref_num,s.requestId,s.paymentAmount,s.orderAmount,s.fawryFees,s.orderStatus,s.paymentMethod);
+                        MerchentNumber.PaidStatus = "PAID";
+                        MerchentNumber.date_pay = DateTime.Now.ToString();
+                        db.SaveChanges();
                         return message;//true;
                     }
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound,"the response is not paid");
@@ -61,7 +64,7 @@ namespace digital_Library
                 if (customstu != null)
                 {
                     var t = db.students.Where(a => a.id_student == customstu.id_stu).FirstOrDefault();
-                    t.status = 1;
+                    t.status = 0;
                     t.Flag_pay = true;
 
                     requestTable newreq = new requestTable
@@ -75,7 +78,8 @@ namespace digital_Library
                         orderAmount = orderamount,
                         fawryFees = fees,
                         orderStatus = orderstat,
-                        paymentMethod = paymethod
+                        paymentMethod = paymethod,
+                        
 
                     };
                     db.requestTables.Add(newreq);

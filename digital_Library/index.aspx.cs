@@ -33,7 +33,7 @@ namespace digital_Library
                 nid = stu.national_id;
                 mobiletxt = stu.phone;
                stuname = stu.name_student;
-                var stu_ref = d.merchent_ref_number.Where(a => a.id == stu.id_student).FirstOrDefault();
+                var stu_ref = d.merchent_ref_number.Where(a => a.id_stu == stu.id_student).FirstOrDefault();
                 if (stu_ref == null)
                 {//he is first time to login 
                     int random_num = GET_RandomNumberFunction();

@@ -13,6 +13,11 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="merchent_ref_num" Type="nvarchar(max)" />
+    <Property Name="PaidStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="refNumber_fawry" Type="nvarchar(max)" />
+    <Property Name="signture" Type="nvarchar(max)" />
+    <Property Name="date_pay" Type="nvarchar" MaxLength="50" />
+    <Property Name="id_stu" Type="int" />
   </EntityType>
   <EntityType Name="requestTable">
     <Key>
@@ -52,20 +57,16 @@
     <Property Name="Co-supervisor" Type="nvarchar(max)" />
     <Property Name="notes" Type="nvarchar(max)" />
     <Property Name="Flag_pay" Type="bit" />
-    <Property Name="date_pay" Type="nvarchar" MaxLength="50" />
     <Property Name="date_print" Type="nvarchar" MaxLength="50" />
     <Property Name="iduniversity" Type="int" />
     <Property Name="univ_name" Type="nvarchar(max)" />
     <Property Name="degree_academic" Type="nvarchar" MaxLength="200" />
     <Property Name="search_date" Type="nvarchar" MaxLength="50" />
     <Property Name="employee_user" Type="nvarchar" MaxLength="70" />
-    <Property Name="refnumber" Type="nvarchar(max)" />
     <Property Name="arabic_address" Type="nvarchar(max)" />
     <Property Name="eng_add" Type="nvarchar(max)" />
     <Property Name="status" Type="tinyint" />
     <Property Name="student_file" Type="nvarchar(max)" />
-    <Property Name="refNumber_fawry" Type="nvarchar(max)" />
-    <Property Name="signture" Type="nvarchar(max)" />
     <Property Name="year_academic" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="university">
