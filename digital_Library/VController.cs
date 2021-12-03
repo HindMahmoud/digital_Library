@@ -57,26 +57,30 @@ namespace digital_Library
         {
             digitalLibEntities db = new digitalLibEntities();
             {
-                var customstu = db.students.Where(a=>a.refnumber==merchentNumber).FirstOrDefault();
-                customstu.status = 1;
-                customstu.Flag_pay = true;
-                requestTable newreq = new requestTable
+                var customstu = db.merchent_ref_number.Where(a => a.merchent_ref_num == merchentNumber).FirstOrDefault();
+                if (customstu != null)
                 {
-                    student_id = customstu.id_student,
-                    requestId =req,
-                    fawryRefNumber = customstu.refNumber_fawry,
-                    merchantRefNumber = customstu.refnumber,
-                    customerMobile = customstu.phone,
-                    paymentAmount = pay,
-                    orderAmount = orderamount,
-                    fawryFees = fees,
-                    orderStatus = orderstat,
-                    paymentMethod = paymethod
+                    var t = db.students.Where(a => a.id_student == customstu.id_stu).FirstOrDefault();
+                    t.status = 1;
+                    t.Flag_pay = true;
 
-                };
-                db.requestTables.Add(newreq);
-                db.SaveChanges();
-            }
+                    requestTable newreq = new requestTable
+                    {
+                        student_id = t.id_student,
+                        requestId = req,
+                        fawryRefNumber = customstu.refNumber_fawry,
+                        merchantRefNumber = customstu.merchent_ref_num,
+                        customerMobile = t.phone,
+                        paymentAmount = pay,
+                        orderAmount = orderamount,
+                        fawryFees = fees,
+                        orderStatus = orderstat,
+                        paymentMethod = paymethod
+
+                    };
+                    db.requestTables.Add(newreq);
+                    db.SaveChanges();
+                } }
         }
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)

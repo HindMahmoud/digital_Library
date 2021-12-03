@@ -16,5 +16,10 @@ namespace digital_Library.modals
     {
         public int id { get; set; }
         public string merchent_ref_num { get; set; }
+        public string PaidStatus { get; set; }
+        public string refNumber_fawry { get; set; }
+        public string signture { get; set; }
+        public string date_pay { get; set; }
+        public Nullable<int> id_stu { get; set; }
     }
 }

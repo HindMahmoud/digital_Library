@@ -33,18 +33,15 @@ namespace digital_Library
                 nid = stu.national_id;
                 mobiletxt = stu.phone;
                stuname = stu.name_student;
-                if (stu.Flag_pay == null)
-                {
-                    if (stu.refnumber == null)
-                    {//want to get refnumber
-                        int random_num = GET_RandomNumberFunction();
-                        refunumber = RandomString() + random_num + stu.id_student.ToString()+ RandomString();
-                    }
-                    else if(stu.refnumber!=null&&stu.refNumber_fawry!=null&&stu.signture!=null){
-                        fawerydiv.Attributes.Add("class", "top_rounded");
-                    }   
+                var stu_ref = d.merchent_ref_number.Where(a => a.id == stu.id_student).FirstOrDefault();
+                if (stu_ref == null)
+                {//he is first time to login 
+                    int random_num = GET_RandomNumberFunction();
+                    refunumber = RandomString() + random_num + stu.id_student.ToString() + RandomString();
                 }
-              else if (stu.status != null && stu.Flag_pay != null)
+                else { fawerydiv.Attributes.Add("class", "top_rounded"); }
+
+                if (stu.status != null && stu.Flag_pay != null)
                 {//paid and have steps in progress 
                     status = int.Parse(stu.status.ToString());
                     flagPaid = true;
@@ -462,41 +459,34 @@ namespace digital_Library
         {
             digitalLibEntities d = new digitalLibEntities();
            int id_user = int.Parse(HttpContext.Current.Session["id"].ToString());
-            var r = (d.students.Where(a=>a.id_student==id_user)).FirstOrDefault();
+            var r = (d.merchent_ref_number.Where(a=>a.id_stu==id_user)).FirstOrDefault();
             if (orderStatus == "PAID")
             {
-                if (r != null)
+                var student_updated = (d.students.Where(a => a.id_student == id_user)).FirstOrDefault();
+                student_updated.Flag_pay = true;
+                student_updated.status = 0;
+                merchent_ref_number m = new merchent_ref_number
                 {
-                    r.Flag_pay = true;
-                    r.status = 1;
-                    r.refNumber_fawry = refFawry;
-                    //check if merchent reference fawry
-                    var all_refernces = d.merchent_ref_number.Where(a => a.merchent_ref_num == reff).FirstOrDefault();
-                    if (all_refernces == null)
-                    {
-                        r.refnumber = reff;
-                    }
-                    else
-                    {
-                        r.refnumber = RandomString() + GET_RandomNumberFunction() + r.id_student.ToString() + RandomString();
-                    }
-                    r.signture = signtureVar;
+                    id_stu=id_user,
+                    merchent_ref_num=reff,
+                    date_pay=DateTime.Now.ToString(),
+                    PaidStatus="PAID",
+                    signture=signtureVar,
+                    refNumber_fawry=refFawry
+                };
+                d.merchent_ref_number.Add(m);
                     d.SaveChanges();
-                }
             }
             else {
-                r.refNumber_fawry = refFawry;
-                //check if merchent reference fawry
-                var all_refernces = d.merchent_ref_number.Where(a => a.merchent_ref_num == reff).FirstOrDefault();
-                if (all_refernces == null)
+                merchent_ref_number m = new merchent_ref_number
                 {
-                    r.refnumber = reff;
-                }
-                else
-                {
-                    r.refnumber = RandomString() + GET_RandomNumberFunction() + r.id_student.ToString() + RandomString();
-                }
-                r.signture = signtureVar;
+                    id_stu = id_user,
+                    merchent_ref_num = reff,
+                   
+                    signture = signtureVar,
+                    refNumber_fawry = refFawry
+                };
+                d.merchent_ref_number.Add(m);
                 d.SaveChanges();
             }
         }
