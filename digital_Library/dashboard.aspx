@@ -103,24 +103,73 @@
                    <td><%=i.Flag_pay %></td>
                    <td>
                    
-                   
-                   <div class="switch-toggle switch-3 switch-candy">
-                   <input id="on" name="state-d" type="radio" checked="" />
-                   <label for="on" onclick="">مقبول</label>
+                   <%
+                       var stud_status = i.status;
+                       switch (stud_status)
+ 
+                       {
+ 
+                           case 0:
+ 
+                           {
+                               on.Checked=false;na.Checked=true;off.Checked=false;
+                               break; 
+                           }
+ 
+                           case 1:
+ 
+                           {
+                               on.Checked=false;na.Checked=true;off.Checked= false;
+                               break;
+                           }
+ 
+                           case 2:
+ 
+                           {
+                               on.Checked=true;na.Checked=false;off.Checked=false;
+                               break; 
+                           }
+ 
+                           case 3:
+ 
+                           {
+                               on.Checked=false;na.Checked=false;off.Checked=true;
+                               break;
+                           }
+                           case 4:
+ 
+                           {
+                               on.Checked=true;na.Checked=false;off.Checked=false;
+                               break; 
+                           }
+ 
+                           case 5:
+ 
+                           {
+                               on.Checked=true;na.Checked=false;off.Checked=false;
+                               break;
+                           } 
+            }
 
-                   <input id="na" name="state-d" type="radio" checked="checked" />
+                          %>
+                   <div id="stud_stat" runat="server" class="switch-toggle switch-3 switch-candy">
+                   <input id="off" runat="server"  name="state-d" type="radio"  checked="" />
+                   <label for="off" onclick="">مرفوض</label>
+
+                   <input id="na" runat="server" name="state-d" type="radio"  checked="" />
                    <label for="na" class="disabled" onclick="">لم يحدد</label>
 
-                   <input id="<%=i.id%>" name="state-d" type="radio" />
-                   <label for="off" onclick="">مرفوض</label>
+                   <input id="on" runat="server" name="state-d" type="radio" checked=""/>
+                   <label for="on" onclick="">مقبول </label>
+     
 
                    <a></a>
                    </div>
 
                    </td>
                    </tr>
-  
-                   <% }} %>
+   <% } %>
+                   <% } %>
                 </tbody>
             </table>
           </div>
@@ -138,13 +187,23 @@
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
    
     <script>
-
+        
+        let elem = document.getElementByID('#stud_status');
+        let elements = stud_status.getElementsByID('on');
         $(function () {
             $(document).ready(function () {
                 $('#example').DataTable();
                
                  });
         });
+        function selectme() {
+            var divselection = $('#stud_status');
+            elem.elements
+        }
+        function myFunction(id) {
+            
+    return id+"hh";   // The function returns.
+}
     </script>
 </body>
 </html>
