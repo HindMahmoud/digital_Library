@@ -29,18 +29,17 @@
     <Property Name="Co_supervisor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Flag_pay" Type="Boolean" />
-    <Property Name="date_pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="date_print" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="iduniversity" Type="Int32" />
     <Property Name="degree_academic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="search_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="employee_user" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
-    <Property Name="refnumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="arabic_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="eng_add" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="univ_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="status" Type="Byte" />
     <Property Name="student_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="year_academic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="university">
     <Key>
@@ -62,5 +61,35 @@
     <EntitySet Name="students" EntityType="Self.student" />
     <EntitySet Name="universities" EntityType="Self.university" />
     <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="requestTables" EntityType="digitalLibModel.requestTable" />
+    <EntitySet Name="merchent_ref_number" EntityType="digitalLibModel.merchent_ref_number" />
   </EntityContainer>
+  <EntityType Name="requestTable">
+    <Key>
+      <PropertyRef Name="uniqe_ID" />
+    </Key>
+    <Property Name="uniqe_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="student_id" Type="Int32" />
+    <Property Name="requestId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fawryRefNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="merchantRefNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="customerMobile" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="paymentAmount" Type="Double" />
+    <Property Name="orderAmount" Type="Double" />
+    <Property Name="fawryFees" Type="Double" />
+    <Property Name="orderStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="paymentMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="merchent_ref_number">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="merchent_ref_num" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PaidStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="refNumber_fawry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="signture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date_pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_stu" Type="Int32" />
+  </EntityType>
 </Schema>
