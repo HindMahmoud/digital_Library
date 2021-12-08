@@ -373,7 +373,7 @@
                         imageUrl:'https://developer.fawrystaging.com/fawrypay/img/brand/blue.png'
                      }
                 ],
-                returnUrl: 'http://localhost:51521/index.aspx',
+                returnUrl: 'http://ecpu.sohag-univ.edu.eg/digitalLibrary/index.aspx',
                 signature: txtreturned
             };
             return chargeRequest;
@@ -442,7 +442,7 @@
 	    data: '{reff:"' + ref + '",refFawry:"'+refFawry+'",orderStatus:"'+ostatus+'",signtureVar:"'+signtureVar+'"}',
 	    dataType:'json',       
 	    success: function () {
-	                window.location.href="http://localhost:51521/index.aspx";  
+	        window.location.href="http://ecpu.sohag-univ.edu.eg/digitalLibrary/index.aspx";  
 	            }
                 , faild: function () {
                  alert('لم يتم الحفظ');
