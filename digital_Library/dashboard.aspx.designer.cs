@@ -7,9 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace digital_Library {
-    
-    
-    public partial class dashboard {
+namespace digital_Library
+{
+
+
+    public partial class dashboard
+    {
+
+        /// <summary>
+        /// Student_Satate_div control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Student_Satate_div;
     }
 }

@@ -54,6 +54,7 @@
                                                 <th>المشاركين/المشرفين</th>
                                                 <th>حالة الدفع</th>
                                                 <th>الاطلاع علي الملف</th>
+                                                <th>حالة الطالب</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -81,8 +82,16 @@
                                                 <td><%=i.Supervisor %></td>
                                                 <td><%=i.chart_title %></td>
                                                 <td><%=i.Co_supervisor %></td>
-                                                <td><%=i.Flag_pay %></td>
+                                                <td><%var Pay_State = i.Flag_pay.ToString();
+                                                        if (Pay_State == "True")
+                                                        { Response.Write("قام بالدفع"); }
+                                                        else if (Pay_State == "False")
+                                                        { Response.Write("لم يتم الدفع"); }
+                                                        else
+                                                        { Response.Write("لم يتم الدفع"); }%></td>
                                                 <td><a  target="_blank" href="~/sfiles/<%=i.student_file %>"></a></td>
+                                             
+                                                <th><div id="Student_Satate_div" runat="server"> <% var j ="20";%> </div></th>
                                               
                                             </tr>
                                             <% }

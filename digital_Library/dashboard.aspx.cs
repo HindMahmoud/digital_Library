@@ -15,8 +15,17 @@ namespace digital_Library
        public List<student> all = new List<student>();
         protected void Page_Load(object sender, EventArgs e)
         {
-             all = (from m in dn.students select m).ToList();
+            all = (from m in dn.students select m).ToList();
 
+
+            Button Accept_Button = new Button();
+
+            Accept_Button.Text = "Change";
+           // Accept_Button.ID = "change_" + i.ToString();
+            Accept_Button.Font.Size = FontUnit.Point(7);
+           // Accept_Button.ControlStyle.CssClass = "button";
+          //  Accept_Button += new EventHandler(test);
+          
         }
 
         [WebMethod]
