@@ -1,4 +1,5 @@
 ﻿using digital_Library.modals;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,34 +28,84 @@ namespace digital_Library
 
         // POST api/<controller>
         // public bool Post([FromUri]string paidStatus,[FromUri] string requestId, [FromUri]string merchantRefNum,[FromUri] string messageSignature, [FromUri]float paymentAmountvar,[FromUri] float orderAmountvar, [FromUri]float fawryFeesvar,[FromUri] string paymentMethodvar)
-        public HttpResponseMessage Post([FromUri]requestCallBack s)
+//         else
+//                { return Request.CreateErrorResponse(HttpStatusCode.NotFound, "the response is already paid"); }
+//}
+//                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "the studnet is not found"); 
+//            }
+[HttpPost]
+        // public HttpResponseMessage Post([FromUri]requestCallBack s)
+        public void Post([FromUri] WebClient sj)
         {
+            Dictionary<string, bool> operations = new Dictionary<string, bool>()
+            {
+                { "success",true}
+            };
+
             try
             {
+
+                //var values = JsonConvert.DeserializeObject<Dictionary<CallBackRequest, string>>(sj);
+                var json = sj.DownloadString("url");
                 digitalLibEntities db = new digitalLibEntities();
-                var message = Request.CreateResponse(HttpStatusCode.OK);
-                var MerchentNumber = (from m in db.merchent_ref_number where m.merchent_ref_num == s.merchantRefNumber select m).FirstOrDefault();
-                if (MerchentNumber != null)
-                {
-                    if (s.orderStatus == "PAID"&&MerchentNumber.PaidStatus!="PAID")
-                    {
-                        createNewRequest(MerchentNumber.merchent_ref_num,s.requestId,s.paymentAmount,s.orderAmount,s.fawryFees,s.orderStatus,s.paymentMethod);
-                        MerchentNumber.PaidStatus = "PAID";
-                        MerchentNumber.date_pay = DateTime.Now.ToString();
-                        db.SaveChanges();
-                        return message;//true;
-                    }
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound,"the response is not paid");
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "the studnet is not found"); 
+
+                var message = Request.CreateResponse(HttpStatusCode.OK, operations);
             }
+            //    string ss = s.merchantRefNumber;
+
+            //    String[] spearator = { "'" };
+            //    String[] strlist = ss.Split(spearator,
+            //  StringSplitOptions.RemoveEmptyEntries);
+            //    string replacedtxt = ss.Replace("\"", "");
+            //    String str = replacedtxt;
+            //    string orderstatusReplacedtxt = s.orderStatus.Replace("\"", "");
+            //    var MerchentNumber = (from m in db.merchent_ref_number where m.merchent_ref_num == str select m).FirstOrDefault();
+            //    if (MerchentNumber != null)
+            //    {
+            //        switch (orderstatusReplacedtxt)
+            //        {
+            //            case "PAID":
+            //                {
+            //                    if (MerchentNumber.PaidStatus != "PAID")
+            //                    {
+            //                        createNewRequest(MerchentNumber.merchent_ref_num, s.requestId, s.paymentAmount, s.orderAmount, s.fawryFees, orderstatusReplacedtxt, s.paymentMethod);
+
+            //                        break;
+
+            //                    }
+            //                    else
+            //                    {
+            //                        break;
+            //                    }
+
+            //                }
+
+            //            default:
+            //                {
+            //                    createNewRequest(MerchentNumber.merchent_ref_num, s.requestId, s.paymentAmount, s.orderAmount, s.fawryFees, orderstatusReplacedtxt, s.paymentMethod);
+            //                    break;
+            //                }
+
+            //        }
+            //       /* return true;*///message;//true;
+            //    }
+            //    else
+            //    {
+            //        /*return false;*///Request.CreateErrorResponse(HttpStatusCode.NotFound, "the student is not found");
+            //    }
+
+            //}
+
+
             catch (Exception ex)
             {
-                var badmessage = Request.CreateErrorResponse(HttpStatusCode.BadRequest,  ex);
-                return badmessage;
+                var badmessage = Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+                // return false;//badmessage;
             }
            
         }
+
+       
 
         public void createNewRequest(string merchentNumber,string req,float pay,float orderamount,float fees,string orderstat,string paymethod)
         {
@@ -64,9 +115,15 @@ namespace digital_Library
                 if (customstu != null)
                 {
                     var t = db.students.Where(a => a.id_student == customstu.id_stu).FirstOrDefault();
-                    t.status = 0;
-                    t.Flag_pay = true;
 
+                    if (orderstat == "PAID")
+                    {
+                        t.status = 0;
+                        t.Flag_pay = true;
+                        customstu.date_pay = DateTime.Now.ToString();
+                        db.SaveChanges();
+                    }
+                    customstu.PaidStatus =orderstat;
                     requestTable newreq = new requestTable
                     {
                         student_id = t.id_student,

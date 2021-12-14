@@ -51,7 +51,7 @@
                 <div class="card-body">
                     <h2 class="title">وحدة المكتبة الرقميه</h2>
 					   <h4 class="title">إستمارة فحص موضوعات المخططات</h4>
-                    	<asp:button runat="server" ID="btn" OnClick="btn_Click" cssClass="glyphicon glyphicon-off btn logoutBtn" Text="تسجيل الخروج"/>       
+                    	<asp:button runat="server" ID="btn" OnClick="btn_Click" CausesValidation="false" cssClass="glyphicon glyphicon-off btn logoutBtn" Text="تسجيل الخروج"/>       
                     <div class="containerstep" dir="rtl">
                                <ul class="progressbar">
                                   <li  id="li1"><a href="#fawerydiv">دفع مصاريف الافادة </a></li>
@@ -278,7 +278,9 @@
     <script src="js/global.js"></script>
     <script src="js/indexjsFile.js"></script>
     <script src="https://www.atfawry.com/atfawry/plugin/assets/payments/js/fawrypay-payments.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    
+    <%--<script type="text/javascript" src="https://atfawry.fawrystaging.com/atfawry/plugin/assets/payments/js/fawrypay-payments.js"></script>
+    --%><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/forge/0.8.2/forge.all.min.js"></script>
     <script>
         
@@ -373,7 +375,7 @@
                         imageUrl:'https://developer.fawrystaging.com/fawrypay/img/brand/blue.png'
                      }
                 ],
-                returnUrl: 'http://ecpu.sohag-univ.edu.eg/digitalLibrary/index.aspx',
+                returnUrl: 'http://localhost:51521/index.aspx',
                 signature: txtreturned
             };
             return chargeRequest;
@@ -416,13 +418,13 @@
 
 
 		function GetParameterValues1(param) {  
-		    alert(param);
-		    var ele= param.split('&');
-		    var eleValue= ele[2].split('=');
-		    refnumber=eleValue[1];
-		    var order_status=ele[6];
-		    var fawryRefNumebr=ele[1].split('=')[1];
-		    var signture=ele[12].split('=')[1];
+		    alert(ref);
+		    const urlParams = new URLSearchParams(param);
+
+		    var order_status = urlParams.get('orderStatus');
+		    
+		    var fawryRefNumebr=urlParams.get('referenceNumber');//ele[1].split('=')[1];
+		    var signture=urlParams.get('signature');//ele[12].split('=')[1];
 		    sucessFunction(ref,fawryRefNumebr,order_status,signture);
 		    }
 		$(document).ready(function () {
@@ -442,7 +444,7 @@
 	    data: '{reff:"' + ref + '",refFawry:"'+refFawry+'",orderStatus:"'+ostatus+'",signtureVar:"'+signtureVar+'"}',
 	    dataType:'json',       
 	    success: function () {
-	        window.location.href="http://ecpu.sohag-univ.edu.eg/digitalLibrary/index.aspx";  
+	        window.location.href="http://localhost:51521/index.aspx";  
 	            }
                 , faild: function () {
                  alert('لم يتم الحفظ');
