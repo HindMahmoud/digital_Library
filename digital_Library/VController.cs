@@ -1,10 +1,14 @@
 ﻿using digital_Library.modals;
-
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 
@@ -13,96 +17,108 @@ namespace digital_Library
    
     public class VController : ApiController
     {
-       
+        digitalLibEntities db = new digitalLibEntities();
+
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        public string Get(string merchent_ref_num,string signture)
         {
-            return new string[] { "value1", "value2" };
-        }
+            string replacedtxt = merchent_ref_num.Replace("\"", "");
+            string replacedtxt2 = signture.Replace("\"", "");
+            PostJson("https://atfawry.fawrystaging.com/ECommerceWeb/Fawry/payments/status/v2", new fawrypay_request
+            {
+                merchantCode = "rfM9nzFIxkyj6XXRxrDE/g==",
+                merchantRefNumber = replacedtxt,
+                signature = replacedtxt2
+            });
 
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
+            return "";
         }
-
-        // POST api/<controller>
-        // public bool Post([FromUri]string paidStatus,[FromUri] string requestId, [FromUri]string merchantRefNum,[FromUri] string messageSignature, [FromUri]float paymentAmountvar,[FromUri] float orderAmountvar, [FromUri]float fawryFeesvar,[FromUri] string paymentMethodvar)
-//         else
-//                { return Request.CreateErrorResponse(HttpStatusCode.NotFound, "the response is already paid"); }
-//}
-//                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "the studnet is not found"); 
-//            }
-[HttpPost]
-        // public HttpResponseMessage Post([FromUri]requestCallBack s)
-        public void Post([FromUri] WebClient sj)
+        private static void PostJson(string uri, fawrypay_request postParameters)
         {
+            string postData = JsonConvert.SerializeObject(postParameters);
+            byte[] bytes = Encoding.UTF8.GetBytes(postData);
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+            httpWebRequest.Method = "GET";
+            httpWebRequest.ContentLength = bytes.Length;
+            httpWebRequest.ContentType = "text/json";
+            using (Stream requestStream = httpWebRequest.GetRequestStream())
+            {
+                requestStream.Write(bytes, 0, bytes.Count());
+            }
+            var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            if (httpWebResponse.StatusCode != HttpStatusCode.OK)
+            {
+                string message = String.Format("GET failed. Received HTTP {0}", httpWebResponse.StatusCode);
+                throw new ApplicationException(message);
+            }
+        }
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //string ss = s.merchantRefNumber;
+        //String[] spearator = { "'" };
+        //String[] strlist = ss.Split(spearator,
+        //StringSplitOptions.RemoveEmptyEntries);
+        //string replacedtxt = ss.Replace("\"", "");
+        //String str = replacedtxt;
+        //string orderstatusReplacedtxt = s.orderStatus.Replace("\"", "");
+
+        //}
+
+        [HttpPost]
+        public HttpResponseMessage Post()//فاضل بس اعرف امتي يرجع new ,وامتي يرجع paid
+        {
+           
             Dictionary<string, bool> operations = new Dictionary<string, bool>()
             {
                 { "success",true}
+             
             };
-
             try
             {
+              String json=  HttpContext.Current.Request.QueryString["CallBackRequest"].ToString();
+                CallBackRequest s = JsonConvert.DeserializeObject <CallBackRequest> (json);
+                 var message = Request.CreateResponse(HttpStatusCode.OK, operations);
+                 var MerchentNumber = (from m in db.merchent_ref_number where m.merchent_ref_num == s.merchantRefNumber select m).FirstOrDefault();
+                if (MerchentNumber != null)
+                {
+                    switch (s.orderStatus)
+                    {
+                        case "PAID":
+                            {
+                                if (MerchentNumber.PaidStatus != "PAID")
+                                {
+                                    createNewRequest(MerchentNumber.merchent_ref_num, s.requestId, s.paymentAmount, s.orderAmount, s.fawryFees, s.orderStatus, s.paymentMethod);
+                                    break;
+                                }
+                                else
+                                {
+                                    break;
+                                }
 
-                //var values = JsonConvert.DeserializeObject<Dictionary<CallBackRequest, string>>(sj);
-                var json = sj.DownloadString("url");
-                digitalLibEntities db = new digitalLibEntities();
+                            }
 
-                var message = Request.CreateResponse(HttpStatusCode.OK, operations);
+                        default:
+                            {
+                                createNewRequest(MerchentNumber.merchent_ref_num, s.requestId, s.paymentAmount, s.orderAmount, s.fawryFees, s.orderStatus, s.paymentMethod);
+                                break;
+                            }
+
+                    }
+                    return message;
+                }
+                else
+                {
+                    return message;
+                }
+              
             }
-            //    string ss = s.merchantRefNumber;
-
-            //    String[] spearator = { "'" };
-            //    String[] strlist = ss.Split(spearator,
-            //  StringSplitOptions.RemoveEmptyEntries);
-            //    string replacedtxt = ss.Replace("\"", "");
-            //    String str = replacedtxt;
-            //    string orderstatusReplacedtxt = s.orderStatus.Replace("\"", "");
-            //    var MerchentNumber = (from m in db.merchent_ref_number where m.merchent_ref_num == str select m).FirstOrDefault();
-            //    if (MerchentNumber != null)
-            //    {
-            //        switch (orderstatusReplacedtxt)
-            //        {
-            //            case "PAID":
-            //                {
-            //                    if (MerchentNumber.PaidStatus != "PAID")
-            //                    {
-            //                        createNewRequest(MerchentNumber.merchent_ref_num, s.requestId, s.paymentAmount, s.orderAmount, s.fawryFees, orderstatusReplacedtxt, s.paymentMethod);
-
-            //                        break;
-
-            //                    }
-            //                    else
-            //                    {
-            //                        break;
-            //                    }
-
-            //                }
-
-            //            default:
-            //                {
-            //                    createNewRequest(MerchentNumber.merchent_ref_num, s.requestId, s.paymentAmount, s.orderAmount, s.fawryFees, orderstatusReplacedtxt, s.paymentMethod);
-            //                    break;
-            //                }
-
-            //        }
-            //       /* return true;*///message;//true;
-            //    }
-            //    else
-            //    {
-            //        /*return false;*///Request.CreateErrorResponse(HttpStatusCode.NotFound, "the student is not found");
-            //    }
-
-            //}
-
-
             catch (Exception ex)
             {
                 var badmessage = Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
-                // return false;//badmessage;
+                return badmessage;
             }
-           
+          
         }
 
        

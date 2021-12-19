@@ -12,6 +12,16 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="faculty_name" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="images_Paid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="R_image" Type="nvarchar(max)" />
+          <Property Name="id_student" Type="int" />
+          <Property Name="paid" Type="bit" />
+          <Property Name="employee_reply" Type="bit" />
+        </EntityType>
         <EntityType Name="merchent_ref_number">
           <Key>
             <PropertyRef Name="id" />
@@ -91,6 +101,7 @@
         </EntityType>
         <EntityContainer Name="digitalLibModelStoreContainer">
           <EntitySet Name="faculty" EntityType="Self.faculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="images_Paid" EntityType="Self.images_Paid" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="merchent_ref_number" EntityType="Self.merchent_ref_number" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="requestTable" EntityType="Self.requestTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="students" EntityType="Self.students" Schema="dbo" store:Type="Tables" />
@@ -164,6 +175,7 @@
           <EntitySet Name="users" EntityType="Self.user" />
           <EntitySet Name="requestTables" EntityType="digitalLibModel.requestTable" />
           <EntitySet Name="merchent_ref_number" EntityType="digitalLibModel.merchent_ref_number" />
+          <EntitySet Name="images_Paid" EntityType="digitalLibModel.images_Paid" />
         </EntityContainer>
         <EntityType Name="requestTable">
           <Key>
@@ -192,6 +204,16 @@
           <Property Name="signture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="date_pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="id_stu" Type="Int32" />
+        </EntityType>
+        <EntityType Name="images_Paid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="R_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_student" Type="Int32" />
+          <Property Name="paid" Type="Boolean" />
+          <Property Name="employee_reply" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -285,6 +307,17 @@
                 <ScalarProperty Name="refNumber_fawry" ColumnName="refNumber_fawry" />
                 <ScalarProperty Name="PaidStatus" ColumnName="PaidStatus" />
                 <ScalarProperty Name="merchent_ref_num" ColumnName="merchent_ref_num" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="images_Paid">
+            <EntityTypeMapping TypeName="digitalLibModel.images_Paid">
+              <MappingFragment StoreEntitySet="images_Paid">
+                <ScalarProperty Name="employee_reply" ColumnName="employee_reply" />
+                <ScalarProperty Name="paid" ColumnName="paid" />
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+                <ScalarProperty Name="R_image" ColumnName="R_image" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
