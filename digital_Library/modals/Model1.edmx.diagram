@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="64080460c3d14212961b2d8fbe728caa" Name="Diagram1" ZoomLevel="59">
+      <Diagram DiagramId="64080460c3d14212961b2d8fbe728caa" Name="Diagram1" ZoomLevel="111">
         <EntityTypeShape EntityType="digitalLibModel.faculty" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="digitalLibModel.student" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="digitalLibModel.university" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="digitalLibModel.user" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="digitalLibModel.images_Paid" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="digitalLibModel.requestTable" Width="1.5" PointX="5.375" PointY="6.75" />
         <EntityTypeShape EntityType="digitalLibModel.merchent_ref_number" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="digitalLibModel.requestTable" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="digitalLibModel.images_Paid" Width="1.5" PointX="7.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

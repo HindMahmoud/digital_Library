@@ -3,6 +3,9 @@ body{
     line-height:2 !important;
     direction: rtl;
 }
+.nav {
+background-color:#27258f;
+}
 h2{
     font-family: 'Raleway', sans-serif;
     font-weight: 900;
@@ -247,7 +250,7 @@ body {
     display: inline-block;
 }
 .loginn .form{
-    border-top: 10px solid #27258f;
+    border-top: 10px solid #743d3d;
     color: #404040;
     background-color: #fff;
 }
@@ -264,15 +267,15 @@ body {
 }
 .loginn input[type=submit],
 .data input[type=submit]{
-    border: 1px solid #27258f;
+    border: 1px solid #743d3d;
     color: #fff !important;
-    background: #27258f;
+    background: #743d3d;
 }
 .loginn input[type=submit]:active,
 .loginn input[type=submit]:focus,
 .loginn input[type=submit]:hover{
-    border: 1px solid #27258f;
-    background: #27258f;
+    border: 1px solid #743d3d;
+    background: #743d3d;
 }
 @media(max-width:767px){
     .loginn{
@@ -309,22 +312,30 @@ body {
     color: #27258f;
 }
 .login .form{
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.664);
+    color: #222020;
+    background-color: rgb(241 238 238 / 73%);
+    /*color: #fff;
+    background-color: rgba(0, 0, 0, 0.664);*/
 }
 .login .form-control{
-    background: none;
-    border: 2px solid #fff;
+   background: none;
+    border: 1px solid #0a0a0a;
     border-radius: 0;
-    padding:25px;
+    padding: 25px;
+}
+.alert-danger {
+    /*color: #a94442;*/
+     background-color: none; 
+    border-color: none !important;
+    font-size: 16px !important;
 }
 .login input{
-    background-color: #27258f;
-    border: 1px solid #27258f;
+    background-color: #9a7652;
+    border: 1px solid #9a7652;
     padding:10px 30px;
     margin-top: 15px;
     font-size: 16px;
-	color:#fff !important;
+    color: #3d3a37 !important;
 }
 @media(max-width:767px){
     .login{
@@ -382,5 +393,8 @@ body {
     color: #fff;
     cursor: pointer;
   }
-/* end modal */ 
-
+/* end modal */
+#Label1 a {
+color:#005aff !important}
+#Label1 a:hover {
+color:#005aff  !important}

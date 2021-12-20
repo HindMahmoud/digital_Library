@@ -10,6 +10,6 @@
 namespace digital_Library {
     
     
-    public partial class dashboard {
+    public partial class AcceptedStu {
     }
 }
