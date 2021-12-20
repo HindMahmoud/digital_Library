@@ -32,17 +32,16 @@ namespace digital_Library.modals
         public string Co_supervisor { get; set; }
         public string notes { get; set; }
         public Nullable<bool> Flag_pay { get; set; }
-        public string date_pay { get; set; }
         public string date_print { get; set; }
         public Nullable<int> iduniversity { get; set; }
         public string degree_academic { get; set; }
         public string search_date { get; set; }
         public string employee_user { get; set; }
-        public string refnumber { get; set; }
         public string arabic_address { get; set; }
         public string eng_add { get; set; }
         public string univ_name { get; set; }
         public Nullable<byte> status { get; set; }
         public string student_file { get; set; }
+        public string year_academic { get; set; }
     }
 }

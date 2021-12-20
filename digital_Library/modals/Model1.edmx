@@ -12,6 +12,44 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="faculty_name" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="images_Paid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="R_image" Type="nvarchar(max)" />
+          <Property Name="id_student" Type="int" />
+          <Property Name="paid" Type="bit" />
+          <Property Name="employee_reply" Type="bit" />
+        </EntityType>
+        <EntityType Name="merchent_ref_number">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="merchent_ref_num" Type="nvarchar(max)" />
+          <Property Name="PaidStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="refNumber_fawry" Type="nvarchar(max)" />
+          <Property Name="signture" Type="nvarchar(max)" />
+          <Property Name="date_pay" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_stu" Type="int" />
+        </EntityType>
+        <EntityType Name="requestTable">
+          <Key>
+            <PropertyRef Name="uniqe_ID" />
+          </Key>
+          <Property Name="uniqe_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="student_id" Type="int" />
+          <Property Name="requestId" Type="nvarchar(max)" />
+          <Property Name="fawryRefNumber" Type="nvarchar(max)" />
+          <Property Name="merchantRefNumber" Type="nvarchar(max)" />
+          <Property Name="customerMobile" Type="nvarchar" MaxLength="25" />
+          <Property Name="paymentAmount" Type="float" />
+          <Property Name="orderAmount" Type="float" />
+          <Property Name="fawryFees" Type="float" />
+          <Property Name="orderStatus" Type="nvarchar(max)" />
+          <Property Name="paymentMethod" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="students">
           <Key>
             <PropertyRef Name="id_student" />
@@ -34,18 +72,17 @@
           <Property Name="Co-supervisor" Type="nvarchar(max)" />
           <Property Name="notes" Type="nvarchar(max)" />
           <Property Name="Flag_pay" Type="bit" />
-          <Property Name="date_pay" Type="nvarchar" MaxLength="50" />
           <Property Name="date_print" Type="nvarchar" MaxLength="50" />
           <Property Name="iduniversity" Type="int" />
           <Property Name="univ_name" Type="nvarchar(max)" />
           <Property Name="degree_academic" Type="nvarchar" MaxLength="200" />
           <Property Name="search_date" Type="nvarchar" MaxLength="50" />
           <Property Name="employee_user" Type="nvarchar" MaxLength="70" />
-          <Property Name="refnumber" Type="nvarchar(max)" />
           <Property Name="arabic_address" Type="nvarchar(max)" />
           <Property Name="eng_add" Type="nvarchar(max)" />
           <Property Name="status" Type="tinyint" />
           <Property Name="student_file" Type="nvarchar(max)" />
+          <Property Name="year_academic" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="university">
           <Key>
@@ -64,6 +101,9 @@
         </EntityType>
         <EntityContainer Name="digitalLibModelStoreContainer">
           <EntitySet Name="faculty" EntityType="Self.faculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="images_Paid" EntityType="Self.images_Paid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="merchent_ref_number" EntityType="Self.merchent_ref_number" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="requestTable" EntityType="Self.requestTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="students" EntityType="Self.students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="university" EntityType="Self.university" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
@@ -101,18 +141,17 @@
           <Property Name="Co_supervisor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Flag_pay" Type="Boolean" />
-          <Property Name="date_pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="date_print" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="iduniversity" Type="Int32" />
           <Property Name="degree_academic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="search_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="employee_user" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
-          <Property Name="refnumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="arabic_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="eng_add" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="univ_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="Byte" />
           <Property Name="student_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="year_academic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="university">
           <Key>
@@ -134,7 +173,48 @@
           <EntitySet Name="students" EntityType="Self.student" />
           <EntitySet Name="universities" EntityType="Self.university" />
           <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="images_Paid" EntityType="digitalLibModel.images_Paid" />
+          <EntitySet Name="merchent_ref_number" EntityType="digitalLibModel.merchent_ref_number" />
+          <EntitySet Name="requestTables" EntityType="digitalLibModel.requestTable" />
         </EntityContainer>
+        <EntityType Name="images_Paid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="R_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_student" Type="Int32" />
+          <Property Name="paid" Type="Boolean" />
+          <Property Name="employee_reply" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="merchent_ref_number">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="merchent_ref_num" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PaidStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="refNumber_fawry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="signture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="date_pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_stu" Type="Int32" />
+        </EntityType>
+        <EntityType Name="requestTable">
+          <Key>
+            <PropertyRef Name="uniqe_ID" />
+          </Key>
+          <Property Name="uniqe_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="student_id" Type="Int32" />
+          <Property Name="requestId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fawryRefNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="merchantRefNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="customerMobile" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="paymentAmount" Type="Double" />
+          <Property Name="orderAmount" Type="Double" />
+          <Property Name="fawryFees" Type="Double" />
+          <Property Name="orderStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="paymentMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -152,6 +232,7 @@
           <EntitySetMapping Name="students">
             <EntityTypeMapping TypeName="digitalLibModel.student">
               <MappingFragment StoreEntitySet="students">
+                <ScalarProperty Name="year_academic" ColumnName="year_academic" />
                 <ScalarProperty Name="student_file" ColumnName="student_file" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="univ_name" ColumnName="univ_name" />
@@ -173,13 +254,11 @@
                 <ScalarProperty Name="Co_supervisor" ColumnName="Co-supervisor" />
                 <ScalarProperty Name="notes" ColumnName="notes" />
                 <ScalarProperty Name="Flag_pay" ColumnName="Flag_pay" />
-                <ScalarProperty Name="date_pay" ColumnName="date_pay" />
                 <ScalarProperty Name="date_print" ColumnName="date_print" />
                 <ScalarProperty Name="iduniversity" ColumnName="iduniversity" />
                 <ScalarProperty Name="degree_academic" ColumnName="degree_academic" />
                 <ScalarProperty Name="search_date" ColumnName="search_date" />
                 <ScalarProperty Name="employee_user" ColumnName="employee_user" />
-                <ScalarProperty Name="refnumber" ColumnName="refnumber" />
                 <ScalarProperty Name="arabic_address" ColumnName="arabic_address" />
                 <ScalarProperty Name="eng_add" ColumnName="eng_add" />
               </MappingFragment>
@@ -199,6 +278,47 @@
                 <ScalarProperty Name="id_admin" ColumnName="id_admin" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="images_Paid">
+            <EntityTypeMapping TypeName="digitalLibModel.images_Paid">
+              <MappingFragment StoreEntitySet="images_Paid">
+                <ScalarProperty Name="employee_reply" ColumnName="employee_reply" />
+                <ScalarProperty Name="paid" ColumnName="paid" />
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+                <ScalarProperty Name="R_image" ColumnName="R_image" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="merchent_ref_number">
+            <EntityTypeMapping TypeName="digitalLibModel.merchent_ref_number">
+              <MappingFragment StoreEntitySet="merchent_ref_number">
+                <ScalarProperty Name="id_stu" ColumnName="id_stu" />
+                <ScalarProperty Name="date_pay" ColumnName="date_pay" />
+                <ScalarProperty Name="signture" ColumnName="signture" />
+                <ScalarProperty Name="refNumber_fawry" ColumnName="refNumber_fawry" />
+                <ScalarProperty Name="PaidStatus" ColumnName="PaidStatus" />
+                <ScalarProperty Name="merchent_ref_num" ColumnName="merchent_ref_num" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="requestTables">
+            <EntityTypeMapping TypeName="digitalLibModel.requestTable">
+              <MappingFragment StoreEntitySet="requestTable">
+                <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
+                <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+                <ScalarProperty Name="fawryFees" ColumnName="fawryFees" />
+                <ScalarProperty Name="orderAmount" ColumnName="orderAmount" />
+                <ScalarProperty Name="paymentAmount" ColumnName="paymentAmount" />
+                <ScalarProperty Name="customerMobile" ColumnName="customerMobile" />
+                <ScalarProperty Name="merchantRefNumber" ColumnName="merchantRefNumber" />
+                <ScalarProperty Name="fawryRefNumber" ColumnName="fawryRefNumber" />
+                <ScalarProperty Name="requestId" ColumnName="requestId" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="uniqe_ID" ColumnName="uniqe_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

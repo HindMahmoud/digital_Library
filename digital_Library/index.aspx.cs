@@ -38,12 +38,12 @@ namespace digital_Library
             //int r = tr.Next(1, 100);
             var t = d.students.Where(a => a.id_student == 1).FirstOrDefault();
             refunumber = t.id_student + t.national_id;
-            var refnum = stu.refnumber;
-            if (refnum == null)
-            {
-                t.refnumber = refunumber;
-                d.SaveChanges();
-            }
+            //var refnum = stu.refnumber;
+            //if (refnum == null)
+            //{
+            //    t.refnumber = refunumber;
+            //    d.SaveChanges();
+            //}
             //else Response.Redirect("index.aspx");
 
             id = 1;

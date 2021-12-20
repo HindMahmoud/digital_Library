@@ -12,6 +12,7 @@
     <EntitySetMapping Name="students">
       <EntityTypeMapping TypeName="digitalLibModel.student">
         <MappingFragment StoreEntitySet="students">
+          <ScalarProperty Name="year_academic" ColumnName="year_academic" />
           <ScalarProperty Name="student_file" ColumnName="student_file" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="univ_name" ColumnName="univ_name" />
@@ -33,13 +34,11 @@
           <ScalarProperty Name="Co_supervisor" ColumnName="Co-supervisor" />
           <ScalarProperty Name="notes" ColumnName="notes" />
           <ScalarProperty Name="Flag_pay" ColumnName="Flag_pay" />
-          <ScalarProperty Name="date_pay" ColumnName="date_pay" />
           <ScalarProperty Name="date_print" ColumnName="date_print" />
           <ScalarProperty Name="iduniversity" ColumnName="iduniversity" />
           <ScalarProperty Name="degree_academic" ColumnName="degree_academic" />
           <ScalarProperty Name="search_date" ColumnName="search_date" />
           <ScalarProperty Name="employee_user" ColumnName="employee_user" />
-          <ScalarProperty Name="refnumber" ColumnName="refnumber" />
           <ScalarProperty Name="arabic_address" ColumnName="arabic_address" />
           <ScalarProperty Name="eng_add" ColumnName="eng_add" />
         </MappingFragment>
@@ -59,6 +58,47 @@
           <ScalarProperty Name="id_admin" ColumnName="id_admin" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="images_Paid">
+      <EntityTypeMapping TypeName="digitalLibModel.images_Paid">
+        <MappingFragment StoreEntitySet="images_Paid">
+          <ScalarProperty Name="employee_reply" ColumnName="employee_reply" />
+          <ScalarProperty Name="paid" ColumnName="paid" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+          <ScalarProperty Name="R_image" ColumnName="R_image" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="merchent_ref_number">
+      <EntityTypeMapping TypeName="digitalLibModel.merchent_ref_number">
+        <MappingFragment StoreEntitySet="merchent_ref_number">
+          <ScalarProperty Name="id_stu" ColumnName="id_stu" />
+          <ScalarProperty Name="date_pay" ColumnName="date_pay" />
+          <ScalarProperty Name="signture" ColumnName="signture" />
+          <ScalarProperty Name="refNumber_fawry" ColumnName="refNumber_fawry" />
+          <ScalarProperty Name="PaidStatus" ColumnName="PaidStatus" />
+          <ScalarProperty Name="merchent_ref_num" ColumnName="merchent_ref_num" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="requestTables">
+      <EntityTypeMapping TypeName="digitalLibModel.requestTable">
+        <MappingFragment StoreEntitySet="requestTable">
+          <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
+          <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+          <ScalarProperty Name="fawryFees" ColumnName="fawryFees" />
+          <ScalarProperty Name="orderAmount" ColumnName="orderAmount" />
+          <ScalarProperty Name="paymentAmount" ColumnName="paymentAmount" />
+          <ScalarProperty Name="customerMobile" ColumnName="customerMobile" />
+          <ScalarProperty Name="merchantRefNumber" ColumnName="merchantRefNumber" />
+          <ScalarProperty Name="fawryRefNumber" ColumnName="fawryRefNumber" />
+          <ScalarProperty Name="requestId" ColumnName="requestId" />
+          <ScalarProperty Name="student_id" ColumnName="student_id" />
+          <ScalarProperty Name="uniqe_ID" ColumnName="uniqe_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
