@@ -19,6 +19,11 @@
         padding:10px 40px;text-align:center}
         .dataTables_filter>label{content:"بحث" !important
         }
+        .icon_container {
+
+	display: inline-block;
+  vertical-align: top;
+}
     </style>
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -83,7 +88,25 @@
                                                 <td><%=i.Co_supervisor %></td>
                                                 <td><%=i.Flag_pay %></td>
                                                 <td><a  target="_blank" href="~/sfiles/<%=i.student_file %>"></a></td>
-                                              
+                                               <td>
+                                                   <%if (i.status == 2 || i.status == 4 || i.status == 5)
+                                                       {
+                                                           Response.Write("تم القبول");
+                                                       %><div class="icon_container" style="float : left" ><input type="button" class="btn lg btn-danger"  id="ReDoAcc_<%=i.id_student%>" value="تراجع"/></div> <%
+                                                       }
+                                                       else if (i.status == 3)
+                                                       {
+                                                          Response.Write("تم الرفض");
+                                                          %> <div class="icon_container" style="float : left" ><input type="button" class="btn lg btn-success"  id="ReDoRej_<%=i.id_student%>" value="نراجع"/></div>  <%
+                                                       }
+                                                       else
+                                                       {
+                                                        %>
+                                                        <div class="inline" style="width: 220px" >
+                                                        <div class="icon_container" style="float: right" ><input type="button" class="btn lg btn-success" id="Acc_<%=i.id_student%>" value="قبول" onclick="display();"/></div>
+                                                        <div class="icon_container" style="float : left" ><input type="button" class="btn lg btn-danger"  id="Rej_<%=i.id_student%>" value="رفض"/></div>
+
+                                                   </div> <% } %></td>
                                             </tr>
                                             <% }
                                             } %>
@@ -110,6 +133,30 @@
                     $(this).toggleClass('allChecked');
                 
                 });
+
+                /*function stat_of_stud() {
+                    var restorebody = document.body.innerHTML;
+                    var printedcontent = document.getElementById("printedtable").innerHTML;
+                    
+                    //if (style.styleSheet) {
+                    //    style.styleSheet.cssText = css;
+                    // } else {
+                    //    style.appendChild(document.createTextNode(css));
+                    // }
+
+                    // head.appendChild(style);
+                    window.print();
+                    document.body.innerHTML = restorebody;
+                    document.body.style.backgroundColor = "#eae8e8";
+                    location.href = location.href;
+
+                } */
+
+                function display(btnClicked) {
+                    alert($(btnClicked).attr('id'));
+                    $(btnClicked).hide();
+                }
+
 
                 var arr = [];
                 var id_stu;
@@ -152,5 +199,5 @@
 
             });
         });
-    </script>
+     </script>
  </asp:Content>
