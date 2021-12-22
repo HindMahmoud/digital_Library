@@ -7,16 +7,6 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="faculty_name" Type="nvarchar(max)" />
   </EntityType>
-  <EntityType Name="images_Paid">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="R_image" Type="nvarchar(max)" />
-    <Property Name="id_student" Type="int" />
-    <Property Name="paid" Type="bit" />
-    <Property Name="employee_reply" Type="bit" />
-  </EntityType>
   <EntityType Name="merchent_ref_number">
     <Key>
       <PropertyRef Name="id" />
@@ -96,7 +86,6 @@
   </EntityType>
   <EntityContainer Name="digitalLibModelStoreContainer">
     <EntitySet Name="faculty" EntityType="Self.faculty" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="images_Paid" EntityType="Self.images_Paid" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="merchent_ref_number" EntityType="Self.merchent_ref_number" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="requestTable" EntityType="Self.requestTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="students" EntityType="Self.students" Schema="dbo" store:Type="Tables" />

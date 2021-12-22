@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="digitalLibModel.user" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="digitalLibModel.requestTable" Width="1.5" PointX="5.375" PointY="6.75" />
         <EntityTypeShape EntityType="digitalLibModel.merchent_ref_number" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="digitalLibModel.images_Paid" Width="1.5" PointX="7.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

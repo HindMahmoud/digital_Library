@@ -63,7 +63,6 @@
     <EntitySet Name="users" EntityType="Self.user" />
     <EntitySet Name="requestTables" EntityType="digitalLibModel.requestTable" />
     <EntitySet Name="merchent_ref_number" EntityType="digitalLibModel.merchent_ref_number" />
-    <EntitySet Name="images_Paid" EntityType="digitalLibModel.images_Paid" />
   </EntityContainer>
   <EntityType Name="requestTable">
     <Key>
@@ -92,15 +91,5 @@
     <Property Name="signture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="date_pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="id_stu" Type="Int32" />
-  </EntityType>
-  <EntityType Name="images_Paid">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="R_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="id_student" Type="Int32" />
-    <Property Name="paid" Type="Boolean" />
-    <Property Name="employee_reply" Type="Boolean" />
   </EntityType>
 </Schema>

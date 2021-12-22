@@ -1,11 +1,9 @@
 ﻿using digital_Library.modals;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -36,52 +34,37 @@ namespace digital_Library
                 mobiletxt = stu.phone;
                stuname = stu.name_student;
                 var stu_ref = d.merchent_ref_number.Where(a => a.id_stu == stu.id_student).FirstOrDefault();
-                var stu_rec = d.images_Paid.Where(a => a.id_student == stu.id_student).FirstOrDefault();
-
                 if (stu_ref == null)
                 {//he is first time to login 
                     int random_num = GET_RandomNumberFunction();
                     refunumber = RandomString() + random_num + stu.id_student.ToString() + RandomString();
-                    receiptdiv.Attributes.Add("class", "top_rounded");
                 }
-                else { fawerydiv.Attributes.Add("class", "top_rounded");
-                    if (stu_rec == null)
-                        {
-                            receiptdiv.Attributes.Add("class", "bottom");
-                           
-                         }
-                    }
+                else { fawerydiv.Attributes.Add("class", "top_rounded"); }
 
                 if (stu.status != null && stu.Flag_pay != null)
                 {//paid and have steps in progress 
                     status = int.Parse(stu.status.ToString());
                     flagPaid = true;
                 }
-                else if (stu.status == null && stu.Flag_pay ==true)
+                else if (stu.status == null && stu.Flag_pay != null)
                 {//paid and hasn't any steps 
                     status = 0;
                 }
-                //PostJson("https://atfawry.com/ECommerceWeb/Fawry/payments/status/v2", new fawrypay_request
-                //{
-                //    merchantCode = "rfM9nzFIxkyj6XXRxrDE/g==",
-                //    merchantRefNumber = "Y6762522057Y",
-                //    signature = "58e5b775b12dcd269cf6d999ea5d8cb69319438194ceefd576c5547ff631bd0b"
-                //});
             }
             else Response.Redirect("Login.aspx");
-           
+            
             alertmsg();
             if (!IsPostBack)
             {
 
-                if (status == 0 && flagPaid == true)
+               if (status > 0)
                 {
                     Getdata();
-                    GetsomeStudata();
-                    PopulateDataList();
-                    PopulateDataList2();
                 }
-                
+                if (status == 0 && flagPaid == true)
+                { GetsomeStudata(); }
+                PopulateDataList();
+                PopulateDataList2();
             }
         }
         private void GetsomeStudata()
@@ -152,73 +135,15 @@ namespace digital_Library
             }
             else if (stu.Flag_pay != true)//لم يتم الدفع
             {
-                var rec = d.images_Paid.Where(a => a.id_student == stu.id_student).FirstOrDefault();
-                if (rec != null)//he is  uploaded images 
-                {//first solution
-                 //the employee not reply yet disappear all
-                    if (rec.employee_reply == null)
-                    {
-                        Info.Text = "تم ارسال صورة الايصال للموظف";
-                        receiptdiv.Visible = false;
-                        fawerydiv.Visible = false;
-                        fileup.Enabled = false;
-                        formdiv.Disabled = false;
-                        submit.Enabled = false;
-                        submit.CssClass = "notactive";
-                        Button1.CssClass = "notactive";
-                        upfildiv.Visible = false;
-                        formdiv.Visible = false;
-                    }
-                    //second solution is the employee reject the rec
-                    if (rec.employee_reply == false)
-                    {
-                        Info.Text = "تم رفض صورة الايصال برجاء رفع صورة ايصال الدفع";
-                        receiptdiv.Visible = true;
-                        fawerydiv.Visible = false;
-                        fileup.Enabled = false;
-                        formdiv.Disabled = false;
-                        submit.Enabled = false;
-                        submit.CssClass = "notactive";
-                        Button1.CssClass = "notactive";
-                        upfildiv.Visible = false;
-                        formdiv.Visible = false;
-                    }
-                    //third solution is the employee is accept and then will contiune the steps 
-                }
-                else //he doesn't upload the image 
-                {
-                    var t = d.merchent_ref_number.Where(id => id.id_stu == stu.id_student).FirstOrDefault();
 
-                    //first solution he first time to login want order number 
-                    if (t == null)
-                    {
-                        Info.Text = "برجاء دفع المصروفات";
-                        receiptdiv.Visible = false;
-                        fawerydiv.Visible = true;
-                        fileup.Enabled = false;
-                        formdiv.Disabled = false;
-                        submit.Enabled = false;
-                        submit.CssClass = "notactive";
-                        Button1.CssClass = "notactive";
-                        upfildiv.Visible = false;
-                        formdiv.Visible = false;
-                    }
-                    //second he login to upload the image
-                    else {
-                        Info.Text = "برجاء رفع صورة ما يثبت الدفع";
-                        receiptdiv.Visible = true;
-                        fawerydiv.Visible = false;
-                        fileup.Enabled = false;
-                        formdiv.Disabled = false;
-                        submit.Enabled = false;
-                        submit.CssClass = "notactive";
-                        Button1.CssClass = "notactive";
-                        upfildiv.Visible = false;
-                        formdiv.Visible = false;
-                    }
-
-                }
-                
+                fawerydiv.Visible = true;
+                fileup.Enabled = false;
+                formdiv.Disabled = false;
+                submit.Enabled = false;
+                submit.CssClass = "notactive";
+                Button1.CssClass = "notactive";
+                upfildiv.Visible = false;
+                formdiv.Visible = false;
             }
             else if (stu.status == 1)//تم الدفع وملأ البيانات
             {
@@ -526,123 +451,45 @@ namespace digital_Library
         {
             Response.Redirect("login.aspx");
         }
-
-        protected void uploadReceipt_Click(object sender, EventArgs e)
-        {
-            if (FileUpload1.HasFiles)
-            {
-                string fileName = FileUpload1.FileName;
-                string ext = Path.GetExtension(FileUpload1.FileName);
-                if ((ext!=".PNG")&&(ext!=".png")&&(ext!=".jpg")&&(ext!=".jpeg"))
-                { return; }
-
-                //try
-                //    {
-                        string NewFileName = stu.name_student+"_"+ stu.id_student;
-                        string path = Server.MapPath("~/receipt/"  + "/" + NewFileName);
-
-                        if (File.Exists(path))
-                        {
-                            File.SetAttributes(path, FileAttributes.Normal);
-                            File.Delete(path);
-
-                        }
-
-                        FileUpload1.PostedFile.SaveAs(path);
-                images_Paid imagesvar = new images_Paid
-                {
-                    id_student=stu.id_student,
-                    R_image=NewFileName
-                };
-                d.images_Paid.Add(imagesvar);
-                d.SaveChanges();
-                       
-                       
-                        string script = "window.onload = function(){var div= document.getElementById('sucessdiv');div.style.display='block';div.style.opacity = '1';setTimeout(function(){ div.style.opacity='0'; }, 1000);}";
-
-                         ClientScript.RegisterStartupScript(this.GetType(), "SuccessMessage", script, true);
-                alertmsg();
-
-                //}
-                //catch (Exception ex)
-                //{
-                //    if (ex.Message == "Illegal characters in path.")
-                //    { Response.Write("<script>alert('برجاء تعديل اسمك لاسم بدون اي علامات تنصيص')</script>"); }
-                //    else
-                //    {
-                //        Response.Write("<script>alert('حجم الملف كبير')</script>");
-                //    }
-
-
-                //}
-            }
-            }
-
+       
 
         #region assignRefNumToDB
-        [WebMethod]
+            [WebMethod]
         public static void assignRefNumToDB(string reff, string refFawry, string orderStatus,string signtureVar)
         {
-            try
+            digitalLibEntities d = new digitalLibEntities();
+           int id_user = int.Parse(HttpContext.Current.Session["id"].ToString());
+            var r = (d.merchent_ref_number.Where(a=>a.id_stu==id_user)).FirstOrDefault();
+            if (orderStatus == "PAID")
             {
-                digitalLibEntities d = new digitalLibEntities();
-                int id_user = int.Parse(HttpContext.Current.Session["id"].ToString());
-                var r = (d.merchent_ref_number.Where(a => a.id_stu == id_user)).FirstOrDefault();
-                if (orderStatus == "PAID")
+                var student_updated = (d.students.Where(a => a.id_student == id_user)).FirstOrDefault();
+                student_updated.Flag_pay = true;
+                student_updated.status = 0;
+                merchent_ref_number m = new merchent_ref_number
                 {
-                    var student_updated = (d.students.Where(a => a.id_student == id_user)).FirstOrDefault();
-                    student_updated.Flag_pay = true;
-                    student_updated.status = 0;
-                    merchent_ref_number m = new merchent_ref_number
-                    {
-                        id_stu = id_user,
-                        merchent_ref_num = reff,
-                        date_pay = DateTime.Now.ToString(),
-                        PaidStatus = "PAID",
-                        signture = signtureVar,
-                        refNumber_fawry = refFawry
-                    };
-                    d.merchent_ref_number.Add(m);
+                    id_stu=id_user,
+                    merchent_ref_num=reff,
+                    date_pay=DateTime.Now.ToString(),
+                    PaidStatus="PAID",
+                    signture=signtureVar,
+                    refNumber_fawry=refFawry
+                };
+                d.merchent_ref_number.Add(m);
                     d.SaveChanges();
-                }
-                else
-                {
-                    merchent_ref_number m = new merchent_ref_number
-                    {
-                        id_stu = id_user,
-                        merchent_ref_num = reff,
-
-                        signture = signtureVar,
-                        refNumber_fawry = refFawry
-                    };
-                    d.merchent_ref_number.Add(m);
-                    d.SaveChanges();
-                }
             }
-            catch { }
+            else {
+                merchent_ref_number m = new merchent_ref_number
+                {
+                    id_stu = id_user,
+                    merchent_ref_num = reff,
+                   
+                    signture = signtureVar,
+                    refNumber_fawry = refFawry
+                };
+                d.merchent_ref_number.Add(m);
+                d.SaveChanges();
+            }
         }
         #endregion
-
-        //private static void PostJson(string uri, fawrypay_request postParameters)
-        //{
-        //    string postData = JsonConvert.SerializeObject(postParameters);
-        //    byte[] bytes = Encoding.UTF8.GetBytes(postData);
-        //    var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
-        //    httpWebRequest.Method = "GET";
-        //    httpWebRequest.ContentLength = bytes.Length;
-        //    var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-        //    using (Stream requestStream = httpWebRequest.GetRequestStream())
-        //    {
-        //        requestStream.Write(bytes, 0, bytes.Count());
-        //    }
-        //    if (httpWebResponse.StatusCode != HttpStatusCode.OK)
-        //    {
-        //        string message = String.Format("GET failed. Received HTTP {0}", httpWebResponse.StatusCode);
-        //        throw new ApplicationException(message);
-        //    }
-        //}
-
-
-
     }
 }
