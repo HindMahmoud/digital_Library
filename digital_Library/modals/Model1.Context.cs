@@ -31,5 +31,6 @@ namespace digital_Library.modals
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<requestTable> requestTables { get; set; }
         public virtual DbSet<merchent_ref_number> merchent_ref_number { get; set; }
+        public virtual DbSet<images_Paid> images_Paid { get; set; }
     }
 }

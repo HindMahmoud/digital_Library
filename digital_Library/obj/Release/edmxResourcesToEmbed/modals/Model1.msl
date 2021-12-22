@@ -91,5 +91,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="images_Paid">
+      <EntityTypeMapping TypeName="digitalLibModel.images_Paid">
+        <MappingFragment StoreEntitySet="images_Paid">
+          <ScalarProperty Name="employee_reply" ColumnName="employee_reply" />
+          <ScalarProperty Name="paid" ColumnName="paid" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+          <ScalarProperty Name="R_image" ColumnName="R_image" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

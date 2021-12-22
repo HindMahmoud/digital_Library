@@ -32,6 +32,22 @@
    <style>
        .top_rounded {
        display:none;}
+         .bottom {
+       display:block;}
+       .upload {
+           float: none;
+    text-align: center;
+ 
+    width: 34%;
+    margin: 13px;
+}
+       .btnsaveupload {
+           padding: 11px;
+    width: 16%;
+    background: #3535e9;
+    color: white;
+       
+       }
    </style>
 </head>
 
@@ -51,10 +67,10 @@
                 <div class="card-body">
                     <h2 class="title">وحدة المكتبة الرقميه</h2>
 					   <h4 class="title">إستمارة فحص موضوعات المخططات</h4>
-                    	<asp:button runat="server" ID="btn" OnClick="btn_Click" cssClass="glyphicon glyphicon-off btn logoutBtn" Text="تسجيل الخروج"/>       
+                    	<asp:button runat="server" ID="btn" OnClick="btn_Click" CausesValidation="false" cssClass="glyphicon glyphicon-off btn logoutBtn" Text="تسجيل الخروج"/>       
                     <div class="containerstep" dir="rtl">
                                <ul class="progressbar">
-                                  <li  id="li1"><a href="#fawerydiv">دفع مصاريف الافادة </a></li>
+                                  <li  id="li1"><a href="#fawerydiv">دفع مصاريف الافادةورفع الايصال </a></li>
                                   <li id="li2"><a href="#formdiv"> ملأ بياناتك </a></li>
                                   <li id="li3">انتظار نتيجه القبول</li>
                                   <li id="li4"> <a href="#upfildiv">رفع الملف </a></li>
@@ -63,16 +79,18 @@
                             </div>
                          <div style="text-align:center">
                                
-                            <asp:Label runat="server" class="infolabel" ID="Info">الخطوة 1 يرجي دفع مصروفات الافادة</asp:Label>
+                            <asp:Label runat="server" class="infolabel" ID="Info">الخطوة 1 يرجي دفع مصروفات الافادةورفع الايصال</asp:Label>
                              <br /> 
                               <div id="fawerydiv" runat="server" style="margin-top:15px">
-                                 <%--<input type="button"  class="btn btn-primary" onclick="FawryPay.checkout(chargeRequest,'http://localhost:51521/index.aspx' , 'http://localhost:51521/index.aspx')"   alt="Edfa3 Fawry" id="xsrrs" style=" height:47px; width:103px; background:url(https://www.atfawry.com/ECommercePlugin/resources/images/atfawry-ar-logo.png);"/>--%>
-                                  <%--<input type="image" onclick="checkout();" src="https://www.atfawry.com/assets/img/FawryPayLogo.jpg"alt="pay-using-fawry" id="fawry-payment-btn"/>
-                                  --%>
                                   <button type="button"   onclick="checkout();"  id="fawry-payment-btn"><img src="https://www.atfawry.com/ECommercePlugin/resources/images/atfawry-ar-logo.png"  alt="fawry"/></button>
-	                              
-
                               </div>
+                              <div id="receiptdiv" runat="server" style="margin-top:15px">
+                                   <asp:FileUpload ID="FileUpload1" runat="server"  CssClass="upload"/>
+                                  <asp:Button ID="uploadReceipt" OnClick="uploadReceipt_Click" CssClass="btnsaveupload" runat="server" Text="رفع ايصال الدفع" />
+                            <br />
+                                   <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="FileUpload1"  ForeColor="red"  ErrorMessage="لايمكنك رفع هذا الايصال ,المطلوب رفعه من نوع .jpeg/.jpg/.png فقط." ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG|png|PNG)$"></asp:RegularExpressionValidator>  
+                                  
+                                   </div>
                          </div>
                     
                         <div id="formdiv"  runat="server"> 
@@ -278,6 +296,8 @@
     <script src="js/global.js"></script>
     <script src="js/indexjsFile.js"></script>
     <script src="https://www.atfawry.com/atfawry/plugin/assets/payments/js/fawrypay-payments.js"></script>
+    
+    <script src="scripts/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/forge/0.8.2/forge.all.min.js"></script>
     <script>
@@ -357,7 +377,7 @@
         function buildChargeRequest() {
             var Nowtime=(new Date().getTime())+(1000*60*60*24*30);
              var txtreturned= generateHash('rfM9nzFIxkyj6XXRxrDE/g=='+'<%=refunumber%>'+''+"http://localhost:51521/index.aspx"+'<%=mobiletxt%>'+''+'<%=nid%>'+1.00+5.00+Nowtime.toString()+'a6f20bc09008480ea9e2f62414c7ad6f');
-           
+          
             const chargeRequest = {
                 merchantCode: 'rfM9nzFIxkyj6XXRxrDE/g==', // the merchant account number in Fawry
                 merchantRefNum: '<%=refunumber%>', // order refrence number from merchant side
@@ -373,10 +393,10 @@
                         imageUrl:'https://developer.fawrystaging.com/fawrypay/img/brand/blue.png'
                      }
                 ],
-                returnUrl: 'http://ecpu.sohag-univ.edu.eg/digitalLibrary/index.aspx',
+                returnUrl: 'http://localhost:51521/index.aspx',
                 signature: txtreturned
             };
-            return chargeRequest;
+             return chargeRequest;
         }
        
 
@@ -389,48 +409,19 @@
                   return hashText
           }
      
-		//function fawryCallbackFunction(paid, billingAcctNum, paymentAuthId,merchantRefNum, messageSignature) {
-		//    alert("it's called");
-		//    //$.ajax({
-		//    //    type: 'POST',
-		//    //    url: '{ValuesController1.aspx/POST',
-		//    //    contentType: "application/json; charset=utf-8",
-	    //    //    data:'{paidStatus:' + paid + ',paymentID:'+paymentAuthId+',merchantRefNum:'+merchantRefNum+',messageSignature:'+messageSignature+'}',
-		//    //    success: function () {
-		//    //        alert(' تم الحفظ');
-		//    //    }
-        //    //    , faild: function () {
-        //    //        alert('لم يتم الحفظ');
-        //    //    }
-		//    //});
-        //}
-        function successCallBack(data) {
-            console.log('handle success call back as desired, data', data);
-            
-        }
-
-        function failureCallBack(data) {
-            console.log('handle failure call back as desired, data', data);
-            //document.getElementById('fawryPayPaymentFrame')?.remove();
-        }
-
-
 		function GetParameterValues1(param) {  
-		    alert(param);
-		    var ele= param.split('&');
-		    var eleValue= ele[2].split('=');
-		    refnumber=eleValue[1];
-		    var order_status=ele[6];
-		    var fawryRefNumebr=ele[1].split('=')[1];
-		    var signture=ele[12].split('=')[1];
-		    sucessFunction(ref,fawryRefNumebr,order_status,signture);
+		    
+		    const urlParams = new URLSearchParams(param);
+            var order_status = urlParams.get('orderStatus');
+		    var fawryRefNumebr=urlParams.get('referenceNumber');//ele[1].split('=')[1];
+		    var signture=urlParams.get('signature');//ele[12].split('=')[1];
+		    var referenceMerchent=urlParams.get('merchantRefNumber');
+		    sucessFunction(referenceMerchent,fawryRefNumebr,order_status,signture);
 		    }
 		$(document).ready(function () {
 		    var URLPage=window.location.href;
 		    if(URLPage.indexOf("?type=") > -1) {
-		        GetParameterValues1(URLPage);
-		        
-		        
+		        GetParameterValues1(URLPage);   
 		    }
            
 		});
@@ -442,14 +433,42 @@
 	    data: '{reff:"' + ref + '",refFawry:"'+refFawry+'",orderStatus:"'+ostatus+'",signtureVar:"'+signtureVar+'"}',
 	    dataType:'json',       
 	    success: function () {
-	        window.location.href="http://ecpu.sohag-univ.edu.eg/digitalLibrary/index.aspx";  
+	        // window.location.href="http://localhost:51521/index.aspx"; 
+	      
+	        FawryPayGetPaymentStatus(ref);
 	            }
                 , faild: function () {
                  alert('لم يتم الحفظ');
                  }
 	        });
 		}
-
+	function FawryPayGetPaymentStatus(merchentrefNumber) {
+	   let merchantCode = "1tSa6uxz2nSuj+kDUGVlyw";
+	    let merchantRefNumber = merchentrefNumber;
+	    let merchant_sec_key = "a6f20bc09008480ea9e2f62414c7ad6f";
+	    let signature_body = merchantCode.concat(merchantRefNumber,merchant_sec_key);
+        
+	    let sha256 = new jsSHA('SHA-256', 'TEXT');
+	    sha256.update(signature_body);
+	    let hash_signature = sha256.getHash("HEX");
+	   
+	    axios.get('https://atfawry.com/ECommerceWeb/Fawry/payments/status/v2', {
+	        merchantCode: merchantCode,
+	        merchantRefNumber: merchantRefNumber,
+	        signature: hash_signature
+	    })
+                        .then(response => {
+                            // Get Response Contents
+                            
+                            let type          = response.data.type;
+                            let paymentStatus = response.data.paymentStatus;
+                            //
+                        })
+                        .catch(error => {
+                        
+                            console.log(error.response.data)
+                        })
+	}
  </script>
 
     <!--end the script-->
